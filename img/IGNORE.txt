@@ -1,0 +1,3 @@
+Ignora este archivo, es para que las
+carpetas se subieran correctamente.
+Mas adelante se eliminara.
