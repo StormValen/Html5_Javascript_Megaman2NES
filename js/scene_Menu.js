@@ -41,7 +41,7 @@ MegamanGame.scene_Menu = {
     },
     update:function(){
         if (this.spaceKey.isDown){
-            this.state.start('bosSelect');
+            this.state.start('bossSelect');
         }
     },
     /*crearTexto:function(){
