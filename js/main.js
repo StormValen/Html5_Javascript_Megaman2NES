@@ -8,6 +8,7 @@ var gameOptions = {
     bgColor:0x444444,
 };
 
-platformer.game = new Phaser.Game(gameOptions.gameWidth,gameOptions.gameHeight,Phaser.AUTO,null,this,false,false);
-platformer.game.state.add('main',MegamanGame.level1);
-platformer.game.state.start('main');
+MegamanGame.game = new Phaser.Game(gameOptions.gameWidth,gameOptions.gameHeight,Phaser.AUTO,null,this,false,false);
+MegamanGame.game.state.add('bosSelect',MegamanGame.scene_BossSelection);
+MegamanGame.game.state.add('menu',MegamanGame.scene_Menu);
+MegamanGame.game.state.start('menu');
