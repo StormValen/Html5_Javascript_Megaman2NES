@@ -5,7 +5,7 @@ var gameOptions = {
     gameHeight:540,
     level1Width:1280,
     level1Height:800,
-    bgColor:0x444444,
+    bgColor:0xf0f0f0,
 };
 
 MegamanGame.game = new Phaser.Game(gameOptions.gameWidth,gameOptions.gameHeight,Phaser.AUTO,null,this,false,false);

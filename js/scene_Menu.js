@@ -14,7 +14,7 @@ MegamanGame.scene_Menu = {
     preload:function(){
         this.game.load.image('title', 'img/title_megaman.png');
     },
-    create:function(){
+    create:function(){        
         this.spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);//registras la key
         this.game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR]);//la guardas
         
@@ -27,8 +27,13 @@ MegamanGame.scene_Menu = {
         this.normal.fill = '#FFFFFF';
         this.normal.strokeThickness = 5;
         this.normal.anchor.setTo(.5);
+        this.dificil = this.game.add.text(this.game.world.centerX, this.game.world.centerY+190, 'DIFFICULT');
+        this.dificil.font = 'Arial Black';
+        this.dificil.fill = '#5f5f5f';
+        this.dificil.strokeThickness = 5;
+        this.dificil.anchor.setTo(.5);
         
-        this.continuar = this.game.add.text(this.game.world.centerX, this.game.world.centerY+200, 'PRESS START');
+        this.continuar = this.game.add.text(this.game.world.centerX, this.game.world.centerY+240, 'PRESS  START');
         this.continuar.font = 'Arial Black';
         this.continuar.fill = '#FFFFFF';
         this.continuar.strokeThickness = 5;
