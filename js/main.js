@@ -1,10 +1,10 @@
 var MegamanGame = MegamanGame || {};
 
 var gameOptions = {
-    gameWidth:960,
-    gameHeight:540,
-    level1Width:1280,
-    level1Height:800,
+    gameWidth:256,
+    gameHeight:240,
+    level1Width:1280, //esto no sirve aun
+    level1Height:800, // esto no sirve aun
     bgColor:0xf0f0f0,
 };
 
@@ -13,4 +13,4 @@ MegamanGame.game.state.add('bossSelect',MegamanGame.scene_BossSelection);
 MegamanGame.game.state.add('menu',MegamanGame.scene_Menu);
 MegamanGame.game.state.add('gameOver',MegamanGame.scene_GameOver);
 MegamanGame.game.state.add('gameOverSelector',MegamanGame.scene_GameOverSelector);
-MegamanGame.game.state.start('gameOver');
+MegamanGame.game.state.start('menu');

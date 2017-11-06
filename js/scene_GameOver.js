@@ -3,7 +3,7 @@ var MegamanGame = MegamanGame || {};
 MegamanGame.scene_GameOver= {
     
     preload:function(){
-       this.game.load.image("background","img/gameOver_screen.png");
+       this.game.load.image("background","img/gameOver.png");
     },
     create:function(){
         this.spacekey = this.game.input.keyboard.addKey(Phaser.Keyboard.L);

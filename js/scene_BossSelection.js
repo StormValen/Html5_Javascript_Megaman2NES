@@ -1,18 +1,20 @@
 var MegamanGame = MegamanGame || {};
+var spaceKey;
 
 MegamanGame.scene_BossSelection = {
     init:function(){
     },
     preload:function(){
-        this.game.load.image('background', 'img/bosSelection.png');
-       // this.game.load.image('background', 'img/main_menu.png');
+        this.game.load.image('background', 'img/stageSelect.png');
     },
     create:function(){
-        this.title = this.game.add.image(gameOptions.gameWidth/2,gameOptions.gameHeight/2,'background');
-        this.title.anchor.setTo(0.5);
-       // this.title.scale.setTo(2.5);
+        this.spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);//registras la key
+        this.game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR]);//la guardas
+        this.title = this.game.add.image(0,0,'background');
     },
     update:function(){
-        
+         if (this.spaceKey.isDown){
+            this.state.start('gameOver');
+        }
     }
 };
