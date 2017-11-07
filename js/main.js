@@ -13,4 +13,5 @@ MegamanGame.game.state.add('bossSelect',MegamanGame.scene_BossSelection);
 MegamanGame.game.state.add('menu',MegamanGame.scene_Menu);
 MegamanGame.game.state.add('gameOver',MegamanGame.scene_GameOver);
 MegamanGame.game.state.add('gameOverSelector',MegamanGame.scene_GameOverSelector);
+MegamanGame.game.state.add('game',MegamanGame.scene_Game);
 MegamanGame.game.state.start('menu');

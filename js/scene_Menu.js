@@ -15,13 +15,13 @@ MegamanGame.scene_Menu = {
         this.game.load.image('title', 'img/MainMenu.png');
     },
     create:function(){        
-        this.spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);//registras la key
-        this.game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR]);//la guardas
+        this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);//registras la key
+        this.game.input.keyboard.addKeyCapture([ Phaser.Keyboard.ENTER]);//la guardas
         
         this.title = this.game.add.image(0,0,'title');
     },
     update:function(){
-        if (this.spaceKey.isDown){
+        if (this.enterKey.isDown){
             this.state.start('bossSelect');
         }
     },
