@@ -3,9 +3,13 @@ var MegamanGame = MegamanGame || {};
 var gameOptions = {
     gameWidth:256,
     gameHeight:240,
-    level1Width:1280, //esto no sirve aun
-    level1Height:800, // esto no sirve aun
+    level1Width:10000, 
+    level1Height:10000, 
     bgColor:0xf0f0f0,
+    
+    megamanGravity:1000,
+    megamanSpeed:100,
+    megamanJump:300
 };
 
 MegamanGame.game = new Phaser.Game(gameOptions.gameWidth,gameOptions.gameHeight,Phaser.AUTO,null,this,false,false);
