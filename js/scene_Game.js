@@ -29,9 +29,12 @@ MegamanGame.scene_Game= {
         this.map.createLayer('Background'); 
         
         this.map.setCollisionBetween(0,100,true,'Terrain',true);
-        this.map.setCollisionBetween(0,100,true,'Stairs',true);    
+        //this.map.setCollisionBetween(4,4,true,'Stairs',true);    
+        //this.map.setCollisionByIndex(4,true,'Stairs',true);
+        this.map.setCollisionByExclusion(0,true,'Stairs',true);
         
-        this.megaman = this.game.add.sprite(100,80,'megaman_sprites');
+        
+        this.megaman = this.game.add.sprite(1000,80,'megaman_sprites');
         this.megaman.anchor.setTo(0.5);
         this.megaman.animations.add('idle',Phaser.Animation.generateFrameNames('idle', 1, 3), 10, true);
         this.megaman.animations.add('run',Phaser.Animation.generateFrameNames('run', 1, 3), 10, true);
@@ -55,7 +58,7 @@ MegamanGame.scene_Game= {
     
     update:function(){
         this.game.physics.arcade.collide(this.megaman,this.terrain);
-        this.game.physics.arcade.overlap(this.megaman,this.stairs, this.hasCollidedWithStairs, null, this);
+       this.game.physics.arcade.overlap(this.megaman,this.stairs, this.hasCollidedWithStairs, null, this);
         
         this.megaman.body.applyGravity = true;
         this.megaman.body.velocity.x = 0;
@@ -67,7 +70,7 @@ MegamanGame.scene_Game= {
             
             if(this.x.isDown && this.megaman.body.blocked.down)
             {
-                this.megaman.animations.play("shoot_run");    
+                this.megaman.animations.play("shoot_run");  
             }
             else if(this.megaman.body.blocked.down)
             {
@@ -116,7 +119,7 @@ MegamanGame.scene_Game= {
     },
     
     hasCollidedWithStairs:function(obj1, obj2){
-        console.log('yes');
+        console.log('yes_');
         this.megaman.body.applyGravity = false;
         
         if(this.cursors.up.isDown)
