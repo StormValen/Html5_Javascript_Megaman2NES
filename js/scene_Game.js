@@ -16,6 +16,9 @@ MegamanGame.scene_Game= {
         
         this.game.load.atlas('megaman_sprites', 'img/sprites.png', 'img/sprites.json');
         
+        this.megaman_bullet_speed = 300;
+        this.game.load.image('megaman_bullet', 'img/megaman_bullet.png');
+        
     },
     
     create:function(){
@@ -29,9 +32,8 @@ MegamanGame.scene_Game= {
         this.map.createLayer('Background'); 
         
         this.map.setCollisionBetween(0,100,true,'Terrain',true);
-        //this.map.setCollisionBetween(4,4,true,'Stairs',true);    
-        //this.map.setCollisionByIndex(4,true,'Stairs',true);
-        this.map.setCollisionByExclusion(0,true,'Stairs',true);
+        this.map.setCollisionBetween(4,4,true,'Stairs',true);    
+
         
         
         this.megaman = this.game.add.sprite(1000,80,'megaman_sprites');
@@ -54,11 +56,13 @@ MegamanGame.scene_Game= {
         this.x = this.game.input.keyboard.addKey(Phaser.Keyboard.X);
         
         this.camera.follow(this.megaman,Phaser.Camera.FOLLOW_PLATFORMER);
+        
+        this.load_megaman_bullets();
     },
     
     update:function(){
         this.game.physics.arcade.collide(this.megaman,this.terrain);
-       this.game.physics.arcade.overlap(this.megaman,this.stairs, this.hasCollidedWithStairs, null, this);
+       this.game.physics.arcade.collide(this.megaman,this.stairs, this.hasCollidedWithStairs, null, this);
         
         this.megaman.body.applyGravity = true;
         this.megaman.body.velocity.x = 0;
@@ -67,36 +71,40 @@ MegamanGame.scene_Game= {
         if(this.cursors.left.isDown)
         {
             this.megaman.body.velocity.x = -gameOptions.megamanSpeed;
+            this.megaman.scale.x = 1; 
             
             if(this.x.isDown && this.megaman.body.blocked.down)
             {
+                this.create_megaman_bullet(this.megaman.scale.x);
                 this.megaman.animations.play("shoot_run");  
             }
             else if(this.megaman.body.blocked.down)
             {
                 this.megaman.animations.play("run"); 
             }
-            this.megaman.scale.x = 1; 
         }
         
         else if(this.cursors.right.isDown)
         { 
             this.megaman.body.velocity.x = gameOptions.megamanSpeed;
+            this.megaman.scale.x = -1; 
             
             if(this.x.isDown && this.megaman.body.blocked.down)
             {
+                this.create_megaman_bullet(this.megaman.scale.x);
                 this.megaman.animations.play("shoot_run");   
             }
             else if(this.megaman.body.blocked.down)
             {
                 this.megaman.animations.play("run");
-            }
-            this.megaman.scale.x = -1;  
+            } 
         }
         
-        else if(this.megaman.body.blocked.down && this.megaman.body.velocity.x == 0){
+        else if(this.megaman.body.blocked.down && this.cursors.right.isUp && this.cursors.right.isUp){
              
-            if(this.x.isDown && this.megaman.body.blocked.down){
+            if(this.x.isDown && this.megaman.body.blocked.down)
+            {
+                this.create_megaman_bullet(this.megaman.scale.x);
                  this.megaman.animations.play("shoot_idle");
             }
             else 
@@ -109,13 +117,40 @@ MegamanGame.scene_Game= {
        {
            this.megaman.body.velocity.y = -gameOptions.megamanJump;
            this.megaman.animations.play("jump");  
-       }/*
+       }
+        /*
        if(this.x.isDown && !this.megaman.body.blocked.down)
        {
            this.megaman.animations.play("shoot_air");
        }*/
         
 
+    },
+    
+    load_megaman_bullets:function(){
+        this.bullets = this.add.group();
+        this.bullets.enableBody = true;
+    },
+    
+    create_megaman_bullet:function(scale){
+        var bullet = this.bullets.getFirstExists(false);
+        
+        if(!bullet)
+        {
+            bullet = new MegamanGame.prefab_Megaman_Bullet(this.game,(this.megaman.x) - (scale * 20), this.megaman.y,this);
+            this.bullets.add(bullet);
+
+        }
+        else
+        {
+            //reset
+            bullet.reset((this.megaman.x) -(scale * 20), this.megaman.y);
+        }
+        
+        if(scale == 1){bullet.body.velocity.x = -this.megaman_bullet_speed;}
+        if(scale == -1){bullet.body.velocity.x = this.megaman_bullet_speed;}
+
+            
     },
     
     hasCollidedWithStairs:function(obj1, obj2){
