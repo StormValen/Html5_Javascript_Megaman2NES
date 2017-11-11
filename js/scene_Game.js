@@ -9,7 +9,6 @@ MegamanGame.scene_Game= {
     
     preload:function(){
         this.load.tilemap('WoodmanLevel','tilemaps/NewMapWoodman.json',null,Phaser.Tilemap.TILED_JSON);
-        this.load.image('StairsLayer',"tilemaps/StairsLayer.png");
         this.load.image('ExtraBackground','tilemaps/ExtraBackground.png');
         this.load.image('MegamanTileset','img/MegamanTileset.png');
         this.load.image('basic','img/fondonegro.png');
@@ -19,6 +18,17 @@ MegamanGame.scene_Game= {
         this.megaman_bullet_speed = 300;
         this.game.load.image('megaman_bullet', 'img/megaman_bullet.png');
         
+        
+        //Layer escaleras
+        this.load.image('stairs_1','tilemaps/StairsLayer/stair_1.png');
+        this.load.image('stairs_2','tilemaps/StairsLayer/stair_2.png');
+        this.load.image('stairs_3','tilemaps/StairsLayer/stair_3.png');
+        this.load.image('stairs_4','tilemaps/StairsLayer/stair_4.png');
+        this.load.image('stairs_5','tilemaps/StairsLayer/stair_5.png');
+        this.load.image('stairs_6','tilemaps/StairsLayer/stair_6.png');
+        this.load.image('stairs_7','tilemaps/StairsLayer/stair_7.png');
+        this.load.image('stairs_8','tilemaps/StairsLayer/stair_8.png');
+        
     },
     
     create:function(){
@@ -26,15 +36,26 @@ MegamanGame.scene_Game= {
         this.map.addTilesetImage('MegamanTileset');
         this.map.addTilesetImage('basic');
         
+        
+        
+        
         this.terrain = this.map.createLayer('Terrain');
-        this.stairs = this.game.add.sprite(0,0,'StairsLayer');
         this.extraBackground = this.game.add.image(0,0,'ExtraBackground');
         this.blockedDoor = this.map.createLayer('BlockedDoor');
         this.map.createLayer('Background'); 
         
         this.map.setCollisionBetween(0,100,true,'Terrain',true);  
-        this.game.physics.arcade.enable(this.stairs);
-        this.stairs.enableBody = true;
+       // this.game.physics.arcade.enable(this.stairs);
+        //this.stairs.enableBody = true;
+        
+        this.stairs = this.game.add.image(1184,192,"stairs_1");
+        this.stairs = this.game.add.image(1072,432,"stairs_2");
+        this.stairs = this.game.add.image(1984,432,"stairs_3");
+        this.stairs = this.game.add.image(1840,176,"stairs_4");
+        this.stairs = this.game.add.image(3024,48,"stairs_5");
+        this.stairs = this.game.add.image(2848,416,"stairs_6");
+        this.stairs = this.game.add.image(3008,656,"stairs_7");
+        this.stairs = this.game.add.image(2848,896,"stairs_8");
         
         this.megaman = this.game.add.sprite(1100,80,'megaman_sprites');
         this.megaman.anchor.setTo(0.5);
