@@ -7,9 +7,12 @@ var gameOptions = {
     level1Height:10000, 
     bgColor:0xf0f0f0,
     
-    megamanGravity:1000,
+    megamanGravity:900,
     megamanSpeed:100,
-    megamanJump:300
+    megamanJump:300,
+    
+    megamanFireRate:100,
+    megamanNextFire:0
 };
 
 MegamanGame.game = new Phaser.Game(gameOptions.gameWidth,gameOptions.gameHeight,Phaser.AUTO,null,this,false,false);
