@@ -11,6 +11,8 @@ MegamanGame.scene_Game= {
     
     preload:function(){
         this.load.tilemap('WoodmanLevel','tilemaps/NewMapWoodman.json',null,Phaser.Tilemap.TILED_JSON);
+        this.load.image('StairsLayer',"tilemaps/StairsLayer.png");
+        this.load.image('ExtraBackground','tilemaps/ExtraBackground.png');
         this.load.image('MegamanTileset','img/MegamanTileset.png');
         this.load.image('basic','img/fondonegro.png');
         
@@ -27,14 +29,12 @@ MegamanGame.scene_Game= {
         this.map.addTilesetImage('basic');
         
         this.terrain = this.map.createLayer('Terrain');
-        this.stairs = this.map.createLayer('Stairs');
+        this.stairs = this.game.add.image(0,0,'StairsLayer');
+        this.extraBackground = this.game.add.image(0,0,'ExtraBackground');
         this.blockedDoor = this.map.createLayer('BlockedDoor');
         this.map.createLayer('Background'); 
         
-        this.map.setCollisionBetween(0,100,true,'Terrain',true);
-        this.map.setCollisionBetween(4,4,true,'Stairs',true);    
-
-        
+        this.map.setCollisionBetween(0,100,true,'Terrain',true);  
         
         this.megaman = this.game.add.sprite(1000,80,'megaman_sprites');
         this.megaman.anchor.setTo(0.5);
@@ -62,7 +62,7 @@ MegamanGame.scene_Game= {
     
     update:function(){
         this.game.physics.arcade.collide(this.megaman,this.terrain);
-       this.game.physics.arcade.collide(this.megaman,this.stairs, this.hasCollidedWithStairs, null, this);
+        //this.game.physics.arcade.collide(this.megaman,this.stairs, this.hasCollidedWithStairs, null, this);
         
         this.megaman.body.applyGravity = true;
         this.megaman.body.velocity.x = 0;
