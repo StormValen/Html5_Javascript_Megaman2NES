@@ -134,6 +134,7 @@ MegamanGame.scene_Game= {
             }
             else if(this.megaman.body.blocked.down)
             {
+                gameOptions.megamanNextFire =0;
                 this.megaman.animations.play("run"); 
             }
         }
@@ -150,6 +151,7 @@ MegamanGame.scene_Game= {
             }
             else if(this.megaman.body.blocked.down)
             {
+                gameOptions.megamanNextFire =0;
                 this.megaman.animations.play("run");
             } 
         }
@@ -159,10 +161,12 @@ MegamanGame.scene_Game= {
             if(this.x.isDown && this.megaman.body.blocked.down)
             {
                 this.create_megaman_bullet(this.megaman.scale.x);
+                
                 this.megaman.animations.play("shoot_idle");
             }
             else 
             {
+                gameOptions.megamanNextFire =0;
                 this.megaman.animations.play("idle");
             }
         }

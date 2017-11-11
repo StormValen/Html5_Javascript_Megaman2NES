@@ -11,7 +11,7 @@ var gameOptions = {
     megamanSpeed:100,
     megamanJump:300,
     
-    megamanFireRate:100,
+    megamanFireRate:400,
     megamanNextFire:0
 };
 

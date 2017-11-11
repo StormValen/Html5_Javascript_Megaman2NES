@@ -19,4 +19,4 @@ MegamanGame.prefab_Megaman_Bullet.prototype.update = function(){
      if(this.body.blocked.left || this.body.blocked.right){
         this.kill();
     }*/
-}
+};
