@@ -3,9 +3,7 @@ var MegamanGame = MegamanGame || {};
 MegamanGame.scene_Game= {
     
     init:function(){
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.game.physics.arcade.gravity.y = gameOptions.megamanGravity;
-        
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);    
         this.game.world.setBounds(0,0,gameOptions.level1Width,gameOptions.level1Heigh);
     },
     
@@ -29,14 +27,16 @@ MegamanGame.scene_Game= {
         this.map.addTilesetImage('basic');
         
         this.terrain = this.map.createLayer('Terrain');
-        this.stairs = this.game.add.image(0,0,'StairsLayer');
+        this.stairs = this.game.add.sprite(0,0,'StairsLayer');
         this.extraBackground = this.game.add.image(0,0,'ExtraBackground');
         this.blockedDoor = this.map.createLayer('BlockedDoor');
         this.map.createLayer('Background'); 
         
         this.map.setCollisionBetween(0,100,true,'Terrain',true);  
+        this.game.physics.arcade.enable(this.stairs);
+        this.stairs.enableBody = true;
         
-        this.megaman = this.game.add.sprite(1000,80,'megaman_sprites');
+        this.megaman = this.game.add.sprite(1100,80,'megaman_sprites');
         this.megaman.anchor.setTo(0.5);
         this.megaman.animations.add('idle',Phaser.Animation.generateFrameNames('idle', 1, 3), 10, true);
         this.megaman.animations.add('run',Phaser.Animation.generateFrameNames('run', 1, 3), 10, true);
@@ -47,6 +47,7 @@ MegamanGame.scene_Game= {
         this.megaman.animations.add('stair',Phaser.Animation.generateFrameNames('stair',1,2), 10, true);
         
         this.game.physics.arcade.enable(this.megaman);
+        this.megaman.body.gravity.y = gameOptions.megamanGravity;
         this.megaman.body.collideWorldBounds = true;
         this.megaman.body.setSize(14,24);
         
@@ -62,7 +63,7 @@ MegamanGame.scene_Game= {
     
     update:function(){
         this.game.physics.arcade.collide(this.megaman,this.terrain);
-        //this.game.physics.arcade.collide(this.megaman,this.stairs, this.hasCollidedWithStairs, null, this);
+        this.game.physics.arcade.overlap(this.megaman,this.stairs, this.hasCollidedWithStairs, null, this);
         
         this.megaman.body.applyGravity = true;
         this.megaman.body.velocity.x = 0;
