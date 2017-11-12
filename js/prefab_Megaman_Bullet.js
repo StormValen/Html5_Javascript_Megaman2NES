@@ -13,10 +13,4 @@ MegamanGame.prefab_Megaman_Bullet = function(game,x,y, _level){
 MegamanGame.prefab_Megaman_Bullet.prototype = Object.create(Phaser.Sprite.prototype);
 MegamanGame.prefab_Megaman_Bullet.prototype.constructor = MegamanGame.prefab_Megaman_Bullet;
 
-MegamanGame.prefab_Megaman_Bullet.prototype.update = function(){
-    this.game.physics.arcade.collide(this,this.level.terrain);
-    /*
-     if(this.body.blocked.left || this.body.blocked.right){
-        this.kill();
-    }*/
-};
+ 

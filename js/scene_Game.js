@@ -103,8 +103,9 @@ MegamanGame.scene_Game= {
         
         //COLISIONS
         this.game.physics.arcade.collide(this.megaman,this.terrain);
-        this.game.physics.arcade.overlap(this.megaman,this.stairs, this.hasCollidedWithStairs, null, this);
-        
+        this.game.physics.arcade.overlap(this.megaman,this.stairs, this.megamanWithStairs, null, this);
+        this.game.physics.arcade.collide(this.bullets,this.terrain ,this.bulletsWithTerrain, null, this);
+
     
         this.megaman.body.applyGravity = true;
         this.megaman.body.velocity.x = 0;
@@ -160,7 +161,7 @@ MegamanGame.scene_Game= {
             }
         }
         
-       if(this.z.isDown && this.megaman.body.blocked.down && this.z.downDuration(250))
+       if(this.z.isDown && this.megaman.body.blocked.down && this.z.downDuration(250)) //NO FUNCIONA
        {
            this.megaman.body.velocity.y = -gameOptions.megamanJump;
            
@@ -171,6 +172,7 @@ MegamanGame.scene_Game= {
            }
            else
            {
+                gameOptions.megamanNextFire =0;
                 this.megaman.animations.play("jump");  
            }
         
@@ -215,7 +217,7 @@ MegamanGame.scene_Game= {
     
     
     // CALLBACK COLLISIONS WITH STAIRS
-    hasCollidedWithStairs:function(obj1, obj2){
+    megamanWithStairs:function(obj1, obj2){
         console.log('stairs');
         this.megaman.body.applyGravity = false;
         
@@ -230,5 +232,9 @@ MegamanGame.scene_Game= {
             this.megaman.animations.play("jump");  
             this.megaman.scale.x = 1; 
         }
+    },
+    
+    bulletsWithTerrain:function(bullet, terrain){
+            bullet.kill();
     }
 };
