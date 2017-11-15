@@ -20,3 +20,7 @@ MegamanGame.prefab_Megaman = function(game,x,y, _level){
 
 MegamanGame.prefab_Megaman.prototype = Object.create(Phaser.Sprite.prototype);
 MegamanGame.prefab_Megaman.prototype.constructor = MegamanGame.prefab_Megaman;
+
+MegamanGame.prefab_Megaman.prototype.update = function(){
+    
+};

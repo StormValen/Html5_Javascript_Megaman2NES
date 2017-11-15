@@ -38,6 +38,8 @@ MegamanGame.scene_Game= {
         this.megaman_bullet_speed = 300;
         this.game.load.image('megaman_bullet', 'img/megaman_bullet.png');
         
+        //ROBORABIT LOAD
+        this.game.load.atlas('roborabit_sprites', 'img/roborabit.png', 'img/roborabit.json');
         
     },
     
@@ -78,9 +80,18 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.enable(this.stairs);
         
         //MEGAMAN
-        this.megaman = new MegamanGame.prefab_Megaman(this.game,1100,80,this);
+        this.megaman = new MegamanGame.prefab_Megaman(this.game,100,80,this);
         this.game.add.existing(this.megaman);
         
+        this.megaman.hit = function()
+        {
+            //se restara vida, y puede morir
+            //this.reset(100,80);
+        }
+        
+        //ROBORABIT PRUBA
+        this.roborabit = new MegamanGame.prefab_RoboRabit(this.game,200,80,this,100,-1,200);
+        this.game.add.existing(this.roborabit);
         
         //KEYBOARD
         this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -114,6 +125,7 @@ MegamanGame.scene_Game= {
     
         this.megaman.body.applyGravity = true;
         this.megaman.body.velocity.x = 0;
+        
         
        if(this.megaman.body.blocked.down){
             this.lastValueOfGround = this.megaman.body.position.y;
