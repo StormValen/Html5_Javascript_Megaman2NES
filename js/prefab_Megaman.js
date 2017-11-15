@@ -16,7 +16,6 @@ MegamanGame.prefab_Megaman = function(game,x,y, _level){
     this.body.gravity.y = gameOptions.megamanGravity;
     this.body.collideWorldBounds = true;
     this.body.setSize(16,24);
-
 };
 
 MegamanGame.prefab_Megaman.prototype = Object.create(Phaser.Sprite.prototype);

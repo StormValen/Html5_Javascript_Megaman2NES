@@ -4,7 +4,8 @@ MegamanGame.scene_Game= {
     
                                     ////////// INIT FUNCTION //////////
     init:function(){
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);    
+          
+        this.game.physics.startSystem(Phaser.Physics.ARCADE); 
         this.game.world.setBounds(0,0,gameOptions.level1Width,gameOptions.level1Heigh);
     },
     
@@ -93,6 +94,9 @@ MegamanGame.scene_Game= {
         
         //GROUP LOADS
         this.load_megaman_bullets();
+        
+        
+        this.lastValueOfGround = 0;
     },
     
     
@@ -100,6 +104,7 @@ MegamanGame.scene_Game= {
     
                                 ////////// UPDATE FUNCTION //////////
     update:function(){
+        
         
         //COLISIONS
         this.game.physics.arcade.collide(this.megaman,this.terrain);
@@ -110,6 +115,11 @@ MegamanGame.scene_Game= {
         this.megaman.body.applyGravity = true;
         this.megaman.body.velocity.x = 0;
         
+       if(this.megaman.body.blocked.down){
+            this.lastValueOfGround = this.megaman.body.position.y;
+        }
+        
+        this.isMiniJumping = this.lastValueOfGround -this.megaman.body.position.y; 
         
         //ACCIONES POR TECLAS MEGAMAN
         if(this.cursors.left.isDown)
@@ -127,6 +137,12 @@ MegamanGame.scene_Game= {
                 gameOptions.megamanNextFire =0;
                 this.megaman.animations.play("run"); 
             }
+            
+            
+            else if(this.x.isDown && this.isMiniJumping > 1){
+                this.create_megaman_bullet(this.megaman.scale.x);
+                this.megaman.animations.play("shoot_air");
+            }
         }
         
         else if(this.cursors.right.isDown)
@@ -137,16 +153,20 @@ MegamanGame.scene_Game= {
             if(this.x.isDown && this.megaman.body.blocked.down)
             {
                 this.create_megaman_bullet(this.megaman.scale.x);
-                this.megaman.animations.play("shoot_run");   
+                this.megaman.animations.play("shoot_run");  
             }
             else if(this.megaman.body.blocked.down)
             {
                 gameOptions.megamanNextFire =0;
-                this.megaman.animations.play("run");
-            } 
+                this.megaman.animations.play("run"); 
+            }
+            else if(this.x.isDown && this.isMiniJumping > 1){
+                this.create_megaman_bullet(this.megaman.scale.x);
+                this.megaman.animations.play("shoot_air");
+            }
         }
         
-        else if(this.cursors.right.isUp && this.cursors.right.isUp && this.megaman.body.blocked.down){
+        else if(this.cursors.right.isUp && this.cursors.left.isUp && this.megaman.body.blocked.down){
              
             if(this.x.isDown && this.megaman.body.blocked.down)
             {
@@ -161,23 +181,18 @@ MegamanGame.scene_Game= {
             }
         }
         
-       if(this.z.isDown && this.megaman.body.blocked.down && this.z.downDuration(250)) //NO FUNCIONA
-       {
-           this.megaman.body.velocity.y = -gameOptions.megamanJump;
-           
-           if(this.x.isDown)
-           {
-               this.create_megaman_bullet(this.megaman.scale.x);
-               this.megaman.animations.play("shoot_air");
-           }
-           else
-           {
-                gameOptions.megamanNextFire =0;
-                this.megaman.animations.play("jump");  
-           }
-        
-       }
-   
+      
+        if(this.z.isDown && this.megaman.body.blocked.down ) //NO FUNCIONA
+        {
+            this.megaman.body.velocity.y = -gameOptions.megamanJump;
+            gameOptions.megamanNextFire =0;
+            this.megaman.animations.play("jump"); 
+        }
+        else if(this.x.isDown && this.isMiniJumping > 1)
+        {
+            this.create_megaman_bullet(this.megaman.scale.x);
+            this.megaman.animations.play("shoot_air");
+        }
     },
     
     
