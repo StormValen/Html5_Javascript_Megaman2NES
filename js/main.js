@@ -8,7 +8,7 @@ var gameOptions = {
     bgColor:0xf0f0f0,
     
     megamanGravity:900,
-    megamanSpeed:100,
+    megamanSpeed:80,
     megamanJump:300,
     
     megamanFireRate:400,

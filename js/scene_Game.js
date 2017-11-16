@@ -122,10 +122,12 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.overlap(this.megaman,this.stairs, this.megamanWithStairs, null, this);
         this.game.physics.arcade.collide(this.bullets,this.terrain ,this.bulletsWithTerrain, null, this);
 
-    
-        this.megaman.body.applyGravity = true;
+        this.megaman.body.allowGravity = true;
+        
+
         this.megaman.body.velocity.x = 0;
         
+        this.game.debug.body(this.megaman);
         
        if(this.megaman.body.blocked.down){
             this.lastValueOfGround = this.megaman.body.position.y;
@@ -142,18 +144,21 @@ MegamanGame.scene_Game= {
             if(this.x.isDown && this.megaman.body.blocked.down)
             {
                 this.create_megaman_bullet(this.megaman.scale.x);
-                this.megaman.animations.play("shoot_run");  
+                this.megaman.animations.play("shoot_run"); 
+                this.megaman.body.setSize(16, 24,2,-1);
             }
             else if(this.megaman.body.blocked.down)
             {
                 gameOptions.megamanNextFire =0;
                 this.megaman.animations.play("run"); 
+                this.megaman.body.setSize(13, 24,4,-1);
             }
             
             
             else if(this.x.isDown && this.isMiniJumping > 1){
                 this.create_megaman_bullet(this.megaman.scale.x);
                 this.megaman.animations.play("shoot_air");
+                
             }
         }
         
@@ -165,12 +170,14 @@ MegamanGame.scene_Game= {
             if(this.x.isDown && this.megaman.body.blocked.down)
             {
                 this.create_megaman_bullet(this.megaman.scale.x);
-                this.megaman.animations.play("shoot_run");  
+                this.megaman.animations.play("shoot_run");
+                this.megaman.body.setSize(16, 24,2,-1);
             }
             else if(this.megaman.body.blocked.down)
             {
                 gameOptions.megamanNextFire =0;
                 this.megaman.animations.play("run"); 
+                this.megaman.body.setSize(13, 24,4,-1);
             }
             else if(this.x.isDown && this.isMiniJumping > 1){
                 this.create_megaman_bullet(this.megaman.scale.x);
@@ -190,6 +197,7 @@ MegamanGame.scene_Game= {
             {
                 gameOptions.megamanNextFire =0;
                 this.megaman.animations.play("idle");
+                this.megaman.body.setSize(16, 24,2,0);
             }
         }
         
@@ -245,20 +253,29 @@ MegamanGame.scene_Game= {
     
     // CALLBACK COLLISIONS WITH STAIRS
     megamanWithStairs:function(obj1, obj2){
-        console.log('stairs');
-        this.megaman.body.applyGravity = false;
-        
+        console.log("stairs");
         if(this.cursors.up.isDown)
         {
+            this.megaman.body.allowGravity = false;
             this.megaman.body.velocity.y = -gameOptions.megamanSpeed;
             this.megaman.animations.play("stair");
             this.megaman.scale.x = 1; 
+            this.megaman.body.setSize(16, 24,0,0);
         }
-        else if(this.cursors.up.isUp)
+        if(this.cursors.down.isDown)
         {
-            this.megaman.animations.play("jump");  
+            this.megaman.body.allowGravity = false;
+            this.megaman.body.velocity.y = gameOptions.megamanSpeed;
+            this.megaman.animations.play("stair");
             this.megaman.scale.x = 1; 
+            this.megaman.body.setSize(16, 24,0,0);
         }
+        if(this.cursors.down.isUp && this.cursors.up.isUp)
+        {
+            this.megaman.body.allowGravity = true;
+            this.megaman.animations.stop("stair");
+        }
+        
     },
     
     bulletsWithTerrain:function(bullet, terrain){
