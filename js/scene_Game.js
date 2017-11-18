@@ -16,6 +16,8 @@ MegamanGame.scene_Game= {
         
         //MUSICA
         this.game.load.audio('music', 'sounds/Gameplay.mp3');
+        this.game.load.audio('jumpS', 'sounds/salto.mp3');
+        this.game.load.audio('shootS', 'sounds/disparo.mp3');        
         
         //MAP LOAD
         this.load.tilemap('WoodmanLevel','tilemaps/NewMapWoodman.json',null,Phaser.Tilemap.TILED_JSON);
@@ -54,6 +56,8 @@ MegamanGame.scene_Game= {
         this.music = this.add.audio('music');
         this.music.loop = true;
         this.music.play();
+        this.shootS = this.add.audio('shootS');
+        this.jumpS = this.add.audio('jumpS')
         
         //ALL MAP
         this.map = this.game.add.tilemap('WoodmanLevel');
@@ -154,6 +158,7 @@ MegamanGame.scene_Game= {
             {
                 this.create_megaman_bullet(this.megaman.scale.x);
                 this.megaman.animations.play("shoot_run"); 
+                this.shootS.play();
                 this.megaman.body.setSize(16, 24,2,-1);
             }
             else if(this.megaman.body.blocked.down)
@@ -180,6 +185,7 @@ MegamanGame.scene_Game= {
             {
                 this.create_megaman_bullet(this.megaman.scale.x);
                 this.megaman.animations.play("shoot_run");
+                this.shootS.play();
                 this.megaman.body.setSize(16, 24,2,-1);
             }
             else if(this.megaman.body.blocked.down)
@@ -198,9 +204,9 @@ MegamanGame.scene_Game= {
              
             if(this.x.isDown && this.megaman.body.blocked.down)
             {
-                this.create_megaman_bullet(this.megaman.scale.x);
-                
+                this.create_megaman_bullet(this.megaman.scale.x);   
                 this.megaman.animations.play("shoot_idle");
+                this.shootS.play();
             }
             else 
             {
@@ -216,6 +222,7 @@ MegamanGame.scene_Game= {
             this.megaman.body.velocity.y = -gameOptions.megamanJump;
             gameOptions.megamanNextFire =0;
             this.megaman.animations.play("jump"); 
+            this.jumpS.play();
         }
         else if(this.x.isDown && this.isMiniJumping > 1)
         {
