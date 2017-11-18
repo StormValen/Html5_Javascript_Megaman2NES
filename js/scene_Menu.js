@@ -20,7 +20,9 @@ MegamanGame.scene_Menu = {
         this.game.input.keyboard.addKeyCapture([ Phaser.Keyboard.ENTER]);//la guardas
         
         this.title = this.game.add.image(0,0,'title');
+        //this.music = new Phaser.Sound(this.game,'music',1,true);
         this.music = this.add.audio('music');
+        this.music.loop = true;
         this.music.play();
     },
     update:function(){

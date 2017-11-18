@@ -13,6 +13,7 @@ MegamanGame.scene_GameOver= {
         
          
         this.music = this.add.audio('music');
+        this.music.loop = true;
         this.music.play();    
     },
     update:function(){

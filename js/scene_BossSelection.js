@@ -14,6 +14,7 @@ MegamanGame.scene_BossSelection = {
         this.title = this.game.add.image(0,0,'background');
         
         this.music = this.add.audio('music');
+        this.music.loop = true;
         this.music.play();    
     },
     update:function(){
