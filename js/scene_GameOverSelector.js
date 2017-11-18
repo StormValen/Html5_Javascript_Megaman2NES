@@ -13,6 +13,8 @@ MegamanGame.scene_GameOverSelector= {
         this.password = this.game.input.keyboard.addKey(Phaser.Keyboard.P);
         
         this.game.add.sprite(0,0,"background");
+        
+        
     },
     update:function(){
        

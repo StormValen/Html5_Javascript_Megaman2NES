@@ -6,14 +6,19 @@ MegamanGame.scene_BossSelection = {
     },
     preload:function(){
         this.game.load.image('background', 'img/stageSelect.png');
+        this.game.load.audio('music', 'sounds/BossSelection.mp3');
     },
     create:function(){
         this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);//registras la key
         this.game.input.keyboard.addKeyCapture([ Phaser.Keyboard.ENTER]);//la guardas
         this.title = this.game.add.image(0,0,'background');
+        
+        this.music = this.add.audio('music');
+        this.music.play();    
     },
     update:function(){
          if (this.enterKey.isDown){
+             this.music.stop();
             this.state.start('game');
         }
     }

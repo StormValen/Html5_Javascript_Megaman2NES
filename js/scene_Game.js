@@ -14,6 +14,8 @@ MegamanGame.scene_Game= {
                                      ////////// PRELOAD FUNCTION //////////
     preload:function(){
         
+        //MUSICA
+        this.game.load.audio('music', 'sounds/Gameplay.mp3');
         
         //MAP LOAD
         this.load.tilemap('WoodmanLevel','tilemaps/NewMapWoodman.json',null,Phaser.Tilemap.TILED_JSON);
@@ -47,6 +49,10 @@ MegamanGame.scene_Game= {
     
                                     ////////// CREATE FUNCTION //////////
     create:function(){
+        
+        //MUSICA
+        this.music = this.add.audio('music');
+        this.music.play();
         
         //ALL MAP
         this.map = this.game.add.tilemap('WoodmanLevel');
@@ -108,6 +114,8 @@ MegamanGame.scene_Game= {
         
         
         this.lastValueOfGround = 0;
+        
+
     },
     
     
