@@ -6,10 +6,8 @@ MegamanGame.scene_Game= {
     init:function(){
           
         this.game.physics.startSystem(Phaser.Physics.ARCADE); 
-        this.game.world.setBounds(0,0,gameOptions.level1Width,gameOptions.level1Heigh);
+        this.game.world.setBounds(0,0,gameOptions.level1Width,gameOptions.level1Width); // para la camara el heigth tiene q ser el del juego y no nivel
     },
-    
-    
     
                                      ////////// PRELOAD FUNCTION //////////
     preload:function(){
@@ -41,6 +39,7 @@ MegamanGame.scene_Game= {
         this.game.load.atlas('megaman_sprites', 'img/sprites.png', 'img/sprites.json');
         this.megaman_bullet_speed = 300;
         this.game.load.image('megaman_bullet', 'img/megaman_bullet.png');
+        //
         
         //ROBORABIT LOAD
         this.game.load.atlas('roborabit_sprites', 'img/roborabit.png', 'img/roborabit.json');
@@ -93,6 +92,7 @@ MegamanGame.scene_Game= {
         //MEGAMAN
         this.megaman = new MegamanGame.prefab_Megaman(this.game,100,80,this);
         this.game.add.existing(this.megaman);
+        this.megaman.body.collideWorldBounds=true;
         
         this.megaman.hit = function()
         {
