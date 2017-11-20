@@ -6,7 +6,8 @@ MegamanGame.scene_Game= {
     init:function(){
           
         this.game.physics.startSystem(Phaser.Physics.ARCADE); 
-        this.game.world.setBounds(0,0,gameOptions.level1Width,gameOptions.level1Width); // para la camara el heigth tiene q ser el del juego y no nivel
+        this.game.world.setBounds(0,0,gameOptions.level1Width,gameOptions.level1Height); // para la camara el heigth tiene q ser el del juego y no nivel
+        //this.game.world.setBoundsToWorld(false, false, false, true, false); // para la camara el heigth tiene q ser el del juego y no nivel
     },
     
                                      ////////// PRELOAD FUNCTION //////////
@@ -54,7 +55,7 @@ MegamanGame.scene_Game= {
         //MUSICA
         this.music = this.add.audio('music');
         this.music.loop = true;
-        this.music.play();
+        //this.music.play();
         this.shootS = this.add.audio('shootS');
         this.jumpS = this.add.audio('jumpS')
         
@@ -90,9 +91,9 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.enable(this.stairs);
         
         //MEGAMAN
-        this.megaman = new MegamanGame.prefab_Megaman(this.game,100,80,this);
+        this.megaman = new MegamanGame.prefab_Megaman(this.game,800,80,this);
         this.game.add.existing(this.megaman);
-        this.megaman.body.collideWorldBounds=true;
+        this.megaman.body.collideWorldBounds=false;
         
         this.megaman.hit = function()
         {
@@ -128,7 +129,12 @@ MegamanGame.scene_Game= {
     
                                 ////////// UPDATE FUNCTION //////////
     update:function(){
-        
+        if(this.megaman.position.y >= (gameOptions.gameHeight-20)){
+            //this.megaman.body.gravity = 0;
+            //console.log("hola");
+            //mover la camara distancia gameOption.gameHeight.
+
+        }
         
         //COLISIONS
         this.game.physics.arcade.collide(this.megaman,this.terrain);
@@ -269,7 +275,7 @@ MegamanGame.scene_Game= {
     
     // CALLBACK COLLISIONS WITH STAIRS
     megamanWithStairs:function(obj1, obj2){
-        console.log("stairs");
+       // console.log("stairs");
         if(this.cursors.up.isDown)
         {
             this.megaman.body.allowGravity = false;
