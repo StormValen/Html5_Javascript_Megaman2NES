@@ -91,7 +91,7 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.enable(this.stairs);
         
         //MEGAMAN
-        this.megaman = new MegamanGame.prefab_Megaman(this.game,800,80,this);
+        this.megaman = new MegamanGame.prefab_Megaman(this.game,100,80,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=false;
         
@@ -101,8 +101,8 @@ MegamanGame.scene_Game= {
             //this.reset(100,80);
         }
         
-        //ROBORABIT PRUBA
-        this.roborabit = new MegamanGame.prefab_RoboRabit(this.game,200,80,this,100,-1,200);
+        //ROBORABIT PRUEBA
+        this.roborabit = new MegamanGame.prefab_RoboRabit(this.game,300,80,this,25,-1,200);
         this.game.add.existing(this.roborabit);
         
         //KEYBOARD
