@@ -1,4 +1,4 @@
-var MegamanGamen = MegamanGame || {};
+var MegamanGame = MegamanGame || {};
 
 MegamanGame.prefab_BirdBomber = function(game, x, y,_level,_speed,_direction,_jumpPower){
     this.level = _level;

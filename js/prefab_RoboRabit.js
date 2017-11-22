@@ -30,7 +30,7 @@ MegamanGame.prefab_RoboRabit.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.terrain);    
     this.game.debug.body(this);
     
-    if()
+    //if()
     
     if(this.body.blocked.down){
         this.animations.play('idle');
