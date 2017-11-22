@@ -11,6 +11,8 @@ MegamanGame.prefab_RoboRabit = function(game,x,y, _level,_speed,_direction,_high
     this.speed = _speed;
     this.direction = _direction;
     this.high_jump = _high_jump;
+    this.jumpRate = 2000;
+    this.nextJump = 0;
     
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
@@ -27,20 +29,14 @@ MegamanGame.prefab_RoboRabit.prototype.create = function(){
 MegamanGame.prefab_RoboRabit.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.terrain);    
     
-    if(this.body.x - this.level.megaman.body.x >= 75){
+    if(this.body.x - this.level.megaman.body.x <= 100 && this.game.time.now > this.nextJump){
+        
         this.animations.play('idle');
+        this.nextJump = this.game.time.now + this.jumpRate;
+        this.jump();
         this.body.setSize(30,37);
     }
-    else { this.animations.play('jump_force');
-         this.body.setSize(30,35);}
-    /*
-    else if(this.body.blocked.down){
-        //this.jump();
-    }
-    else if(!this.body.blocked.down){
-        //this.animations.play('air');
-    }*/
-    
+   
     this.game.physics.arcade.collide(this,this.level.megaman,function(enemy,player){
         if(enemy.body.touching.up && enemy.body.touching.down){
             player.body.velocity.y = -gameOptions.megamanJump;
@@ -52,7 +48,9 @@ MegamanGame.prefab_RoboRabit.prototype.update = function(){
 };
 
 MegamanGame.prefab_RoboRabit.prototype.jump = function(){
-    this.animations.play('jump_force');
-    this.body.velocity.x = this.speed*this.direction;
+    //this.animations.play('jump_force');
+    this.animations.play('air');
+    this.body.velocity.x = this.speed * this.direction;
     this.body.velocity.y = -this.high_jump;
+    console.log("jump");
 };
