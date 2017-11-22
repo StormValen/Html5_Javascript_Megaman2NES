@@ -44,6 +44,10 @@ MegamanGame.scene_Game= {
         
         //ROBORABIT LOAD
         this.game.load.atlas('roborabit_sprites', 'img/roborabit.png', 'img/roborabit.json');
+        //BIRD BOMBER LOAD
+        this.game.load.atlas('birdbomber_sprites', 'img/birdbomber.png','img/birdbomber.json');
+        //ROOTER LOAD
+        this.game.load.atlas('rooster_sprites','img/rooster.png','img/rooster.json');
         
     },
     
@@ -104,6 +108,15 @@ MegamanGame.scene_Game= {
         //ROBORABIT PRUEBA
         this.roborabit = new MegamanGame.prefab_RoboRabit(this.game,300,80,this,25,-1,200);
         this.game.add.existing(this.roborabit);
+        
+        //BIRDBOMBER PRUEBA
+        //this.birdbomber = new MegamanGame.prefab_BirdBomber(this.game,300,80,this,60,-1,200);
+        //this.game.add.existing(this.birdbomber);
+        
+        //ROOSTER PRUEBA
+        this.rooster = new MegamanGame.prefab_Rooster(this.game,300,80,this,110,-1,275);
+        this.game.add.existing(this.rooster);
+        
         
         //KEYBOARD
         this.cursors = this.game.input.keyboard.createCursorKeys();
