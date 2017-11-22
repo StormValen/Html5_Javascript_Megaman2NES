@@ -28,12 +28,20 @@ MegamanGame.prefab_RoboRabit.prototype.create = function(){
 
 MegamanGame.prefab_RoboRabit.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.terrain);    
+    this.game.debug.body(this);
     
+    if()
+    
+    if(this.body.blocked.down){
+        this.animations.play('idle');
+        this.body.velocity.x = 0;
+    }
+
     if(this.body.x - this.level.megaman.body.x <= 100 && this.game.time.now > this.nextJump){
         
-        this.animations.play('idle');
         this.nextJump = this.game.time.now + this.jumpRate;
         this.jump();
+      
         this.body.setSize(30,37);
     }
    
@@ -48,7 +56,6 @@ MegamanGame.prefab_RoboRabit.prototype.update = function(){
 };
 
 MegamanGame.prefab_RoboRabit.prototype.jump = function(){
-    //this.animations.play('jump_force');
     this.animations.play('air');
     this.body.velocity.x = this.speed * this.direction;
     this.body.velocity.y = -this.high_jump;
