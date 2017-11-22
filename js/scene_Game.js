@@ -105,7 +105,7 @@ MegamanGame.scene_Game= {
         }
         
         //ROBORABIT PRUEBA
-        this.roborabit = new MegamanGame.prefab_RoboRabit(this.game,300,80,this,25,-1,200);
+        this.roborabit = new MegamanGame.prefab_RoboRabit(this.game,300,80,this,50,-1,200);
         this.game.add.existing(this.roborabit);
         
         //BIRDBOMBER PRUEBA
