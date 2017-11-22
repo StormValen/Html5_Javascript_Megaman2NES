@@ -7,7 +7,6 @@ MegamanGame.scene_Game= {
           
         this.game.physics.startSystem(Phaser.Physics.ARCADE); 
         this.game.world.setBounds(0,0,gameOptions.level1Width,gameOptions.level1Height); // para la camara el heigth tiene q ser el del juego y no nivel
-        //this.game.world.setBoundsToWorld(false, false, false, true, false); // para la camara el heigth tiene q ser el del juego y no nivel
     },
     
                                      ////////// PRELOAD FUNCTION //////////
@@ -143,7 +142,8 @@ MegamanGame.scene_Game= {
                                 ////////// UPDATE FUNCTION //////////
     update:function(){
         if(this.megaman.position.y >= (gameOptions.gameHeight-20)){
-            //this.megaman.body.gravity = 0;
+            this.megaman.animations.play("jump");
+           // this.megaman.body.gravity = 0;
             //console.log("hola");
             //mover la camara distancia gameOption.gameHeight.
 
