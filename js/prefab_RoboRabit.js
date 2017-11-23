@@ -37,7 +37,9 @@ MegamanGame.prefab_RoboRabit.prototype.update = function(){
         this.body.velocity.x = 0;
     }
 
-    if(this.body.x - this.level.megaman.body.x <= 100 && this.game.time.now > this.nextJump){
+    if((this.body.x - 100 < this.level.megaman.body.x && this.body.x + 100 > this.level.megaman.body.x)  && this.game.time.now > this.nextJump){
+        if(this.level.megaman.body.x < this.body.x ){ this.scale.x = 1;}
+        else if(this.level.megaman.body.x > this.body.x ){ this.scale.x = -1;}
         
         this.nextJump = this.game.time.now + this.jumpRate;
         this.jump();
@@ -57,7 +59,10 @@ MegamanGame.prefab_RoboRabit.prototype.update = function(){
 
 MegamanGame.prefab_RoboRabit.prototype.jump = function(){
     this.animations.play('air');
-    this.body.velocity.x = this.speed * this.direction;
+    
+    if(this.scale.x == 1){ this.body.velocity.x = this.speed * this.direction; }
+    else if(this.scale.x == -1){ this.body.velocity.x = -this.speed * this.direction; }
+    
     this.body.velocity.y = -this.high_jump;
-    console.log("jump");
+    //console.log("jump");
 };
