@@ -49,6 +49,8 @@ MegamanGame.scene_Game= {
         this.game.load.atlas('rooster_sprites','img/rooster.png','img/rooster.json');
         //BALLBAT LOAD
         this.game.load.atlas('ballbat_sprites','img/ballBat.png','img/ballBat.json');
+        //HOT DOG
+        this.game.load.atlas('hotdog_sprites','img/hotdog.png','img/hotdog.json');
     },
     
     
@@ -120,6 +122,10 @@ MegamanGame.scene_Game= {
         //BALLBAL PRUEBA
         this.ballbat = new MegamanGame.prefab_BallBat(this.game,300,70,this,110,-1,20);
         this.game.add.existing(this.ballbat);
+        
+         //HOT DOG PRUEBA
+        this.hotdog = new MegamanGame.prefab_HotDog(this.game,150,70,this,-1);
+        this.game.add.existing(this.hotdog);
         
         //KEYBOARD
         this.cursors = this.game.input.keyboard.createCursorKeys();
