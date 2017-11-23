@@ -3,8 +3,8 @@ var MegamanGame = MegamanGame || {};
 MegamanGame.prefab_HotDog = function(game,x,y, _level,_direction){
     this.level = _level;
     Phaser.Sprite.call(this,game,x,y,'hotdog_sprites');
-    this.anchor.setTo(0.5);
-    this.animations.add('idle',Phaser.Animation.generateFrameNames('iddle', 1, 6), 6, true);
+    this.anchor.setTo(0.5,1);
+    this.animations.add('idle',Phaser.Animation.generateFrameNames('iddle', 1, 6), 8, true);
     this.animations.add('atack',Phaser.Animation.generateFrameNames('ataque',1,2), 10, true);
     this.animations.add('spawn_air',Phaser.Animation.generateFrameNames('spawn',1,1), 10, true);
     this.animations.add('spawn_floor',Phaser.Animation.generateFrameNames('spawn',2,2), 10, true);
@@ -18,6 +18,8 @@ MegamanGame.prefab_HotDog = function(game,x,y, _level,_direction){
     this.lastValueOfGround =0;
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
+    
+    
 };
 
 MegamanGame.prefab_HotDog.prototype = Object.create(Phaser.Sprite.prototype);
@@ -33,10 +35,11 @@ MegamanGame.prefab_HotDog.prototype.update = function(){
     
      if(this.body.blocked.down){
             this.lastValueOfGround = this.body.position.y;
+         this.body.gravity.y = 0;
         }
         
     this.isMiniJumping = this.lastValueOfGround -this.body.position.y; 
-    console.log(this.isMiniJumping);
+    //console.log(this.isMiniJumping);
     
     if(!this.body.blocked.down && this.spawned_air == false){
          this.animations.play('spawn_air');
@@ -50,10 +53,15 @@ MegamanGame.prefab_HotDog.prototype.update = function(){
     }
     
     if(this.body.blocked.down && this.spawned_floor == true){
-            this.animations.play('idle');
+        this.anim = this.animations.play('idle');
+        console.log(this.animations.currentAnim.frame);
         
-            if(this.isMiniJumping >0.5){this.body.setSize(60,50);}
-            else{this.body.setSize(60,60);}
+        this.body.setSize(60,60);
+    
+        
+            //if(this.isMiniJumping >0.5){this.body.setSize(60,50);}
+            //else{this.body.setSize(60,60);}
+        
  
         this.body.velocity.x = 0;
     }
