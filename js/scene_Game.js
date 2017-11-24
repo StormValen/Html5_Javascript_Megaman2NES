@@ -51,6 +51,8 @@ MegamanGame.scene_Game= {
         this.game.load.atlas('ballbat_sprites','img/ballBat.png','img/ballBat.json');
         //HOT DOG
         this.game.load.atlas('hotdog_sprites','img/hotdog.png','img/hotdog.json');
+        //HOT GORILLA
+        this.game.load.atlas('gorilla_sprites','img/gorilla.png','img/gorilla.json');
     },
     
     
@@ -97,7 +99,7 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.enable(this.stairs);
         
         //MEGAMAN
-        this.megaman = new MegamanGame.prefab_Megaman(this.game,100,80,this);
+        this.megaman = new MegamanGame.prefab_Megaman(this.game,2250,50,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=false;
         
@@ -126,6 +128,11 @@ MegamanGame.scene_Game= {
          //HOT DOG PRUEBA
         this.hotdog = new MegamanGame.prefab_HotDog(this.game,150,70,this,-1);
         this.game.add.existing(this.hotdog);
+        
+         //GORILLA PRUEBA
+        this.gorilla = new MegamanGame.prefab_Gorilla(this.game,2500,250,this,50,-1,300);
+        this.game.add.existing(this.gorilla);
+        
         
         //KEYBOARD
         this.cursors = this.game.input.keyboard.createCursorKeys();
