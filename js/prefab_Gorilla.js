@@ -15,11 +15,12 @@ MegamanGame.prefab_Gorilla= function(game,x,y, _level,_speed,_direction,_high_ju
     this.nextJump = 0;
     this.colgar = false;
     this.attack_jump = false;
-    this.position_colgar = 0;
     this.pass = false;
     game.physics.arcade.enable(this);
     //this.body.gravity.y = gameOptions.megamanGravity;
     this.body.setSize(30,30, 0,10);
+    
+    this.altitude = 0;
 };
 
 MegamanGame.prefab_Gorilla.prototype = Object.create(Phaser.Sprite.prototype);
@@ -31,6 +32,10 @@ MegamanGame.prefab_Gorilla.prototype.update = function(){
     }
     this.game.debug.body(this);
     
+    if(this.body.blocked.down){
+            console.log("col");
+        }
+    
     if(this.colgar == false && this.body.x - this.level.megaman.body.x < 80 && this.pass == false){
          this.animations.play('jump');
          this.body.velocity.y = -this.high_jump;
@@ -39,16 +44,20 @@ MegamanGame.prefab_Gorilla.prototype.update = function(){
     else if(this.colgar == true && this.pass == false){
         
         this.animations.play('colgar');
-        this.position_toland = this.body.position.y;
         
         if(this.body.x - this.level.megaman.body.x < 40 && this.pass == false){
             this.attack_jump = true;
             this.animations.play('jump');
-            this.body.velocity.y = -this.high_jump;
-            if(this.position_toland - 100 < this.body.position.y){
-                console.log(this.position_toland - 100);
-                console.log(this.body.position.y);
-                this.pass = true;
+            
+            if(this.level.megaman.body.y + this.altitude < this.body.y && this.pass == false){
+                this.body.velocity.y = -this.high_jump;
+                //this.pass == false
+                this.altitude = 100;
+            }
+            
+            if(this.level.megaman.body.y > this.body.y && !this.pass){
+                this.body.gravity.y = gameOptions.megamanGravity;
+                //this.pass = true;
             }
             
         }
