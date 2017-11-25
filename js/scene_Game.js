@@ -100,15 +100,10 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.enable(this.stairs);
         
         //MEGAMAN
-        this.megaman = new MegamanGame.prefab_Megaman(this.game,2250,50,this);
+        this.intialPosition_x = 2250; this.intialPosition_y = 50;
+        this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=false;
-        
-        this.megaman.hit = function()
-        {
-            //se restara vida, y puede morir
-            //this.reset(100,80);
-        }
         
         //ROBORABIT PRUEBA
         this.roborabit = new MegamanGame.prefab_RoboRabit(this.game,300,80,this,50,-1,300);

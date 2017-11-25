@@ -57,12 +57,6 @@ MegamanGame.prefab_HotDog.prototype.update = function(){
         console.log(this.animations.currentAnim.frame);
         
         this.body.setSize(60,60);
-    
-        
-            //if(this.isMiniJumping >0.5){this.body.setSize(60,50);}
-            //else{this.body.setSize(60,60);}
-        
- 
         this.body.velocity.x = 0;
     }
 };

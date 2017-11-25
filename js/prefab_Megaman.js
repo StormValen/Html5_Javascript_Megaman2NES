@@ -16,6 +16,9 @@ MegamanGame.prefab_Megaman = function(game,x,y, _level){
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
     this.body.collideWorldBounds = true;
+    this.live = 100;
+    this.speed = 100;
+    this.jump_hit = 100;
     
 };
 
@@ -24,4 +27,14 @@ MegamanGame.prefab_Megaman.prototype.constructor = MegamanGame.prefab_Megaman;
 
 MegamanGame.prefab_Megaman.prototype.update = function(){
     
+};
+
+MegamanGame.prefab_Megaman.prototype.hit = function(scaleEnemy){
+   
+    if(scaleEnemy == 1){ this.body.velocity.x = -this.speed; }
+    else if(scaleEnemy == -1){ this.body.velocity.x = this.speed; }
+    this.body.velocity.y = -this.jump_hit;
+    this.animations.play('jump');
+    this.live--;
+    if(this.live < 0){ this.kill(); this.level.state.start('game'); }
 };

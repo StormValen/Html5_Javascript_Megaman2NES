@@ -50,7 +50,7 @@ MegamanGame.prefab_Gorilla.prototype.update = function(){
     
     if(this.colgar == true && this.pass == false){
         
-        if(this.body.x - this.level.megaman.body.x < 80 && this.pass == false){
+        if(this.body.x - this.level.megaman.body.x < 50 && this.pass == false){
             this.attack_jump = true;
             this.animations.play('jump');
             
@@ -96,6 +96,12 @@ MegamanGame.prefab_Gorilla.prototype.update = function(){
         this.nextJump = this.game.time.now + this.jumpRate;
         this.jump();
     }
+    
+    this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
+        if(enemy.body.touching && enemy.body.touching){
+            player.hit(enemy.scale.x);
+        }
+    });
     
 };
 
