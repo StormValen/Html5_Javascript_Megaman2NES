@@ -4,7 +4,6 @@ MegamanGame.scene_Game= {
     
                                     ////////// INIT FUNCTION //////////
     init:function(){
-          
         this.game.physics.startSystem(Phaser.Physics.ARCADE); 
         this.game.world.setBounds(0,0,gameOptions.level1Width,gameOptions.level1Height); // para la camara el heigth tiene q ser el del juego y no nivel
     },

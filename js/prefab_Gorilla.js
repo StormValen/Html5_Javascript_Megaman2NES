@@ -6,7 +6,7 @@ MegamanGame.prefab_Gorilla= function(game,x,y, _level,_speed,_direction,_high_ju
     this.anchor.setTo(0.5);
     this.animations.add('idle',Phaser.Animation.generateFrameNames('jump', 1, 1), 10, true);
     this.animations.add('jump',Phaser.Animation.generateFrameNames('jump',2,2), 10, true);
-    this.animations.add('colgar',Phaser.Animation.generateFrameNames('colgar',1,3), 10, true);
+    this.animations.add('colgar',Phaser.Animation.generateFrameNames('colgar',1,2), 3, true);
     
     this.speed = _speed;
     this.direction = _direction;
@@ -18,6 +18,9 @@ MegamanGame.prefab_Gorilla= function(game,x,y, _level,_speed,_direction,_high_ju
     this.attack_jump = false;
     this.pass = false;
     this.jumping = false;
+    
+    this.once_0 = true;
+    this.once_1 = false;
     
     game.physics.arcade.enable(this);
     this.body.setSize(30,30, 0,10);
@@ -47,9 +50,7 @@ MegamanGame.prefab_Gorilla.prototype.update = function(){
     
     if(this.colgar == true && this.pass == false){
         
-        this.animations.play('colgar');
-        
-        if(this.body.x - this.level.megaman.body.x < 60 && this.pass == false){
+        if(this.body.x - this.level.megaman.body.x < 80 && this.pass == false){
             this.attack_jump = true;
             this.animations.play('jump');
             
@@ -65,7 +66,22 @@ MegamanGame.prefab_Gorilla.prototype.update = function(){
             }
             
         }
+        else{
+            this.animations.play('colgar');
+          
+            if(this.animations.frame == 0 &&  this.once_0 == true){
+                this.body.x = this.body.x +10; 
+                this.once_0 = false;
+                this.once_1 = true;
+            }
+            else if(this.animations.frame == 1 &&  this.once_1 == true){
+                this.body.x = this.body.x -10; 
+                this.once_0 = true;
+                this.once_1 = false;
+            }
+        }
     }
+    
     if(this.pass == true && this.jumping == false){
         this.animations.play('idle');
         this.attack_jump = false;
