@@ -50,6 +50,7 @@ MegamanGame.scene_Game= {
         this.game.load.atlas('ballbat_sprites','img/ballBat.png','img/ballBat.json');
         //HOT DOG
         this.game.load.atlas('hotdog_sprites','img/hotdog.png','img/hotdog.json');
+        this.game.load.image('dogShoot', 'img/dogShoot.png');
         //HOT GORILLA
         this.game.load.atlas('gorilla_sprites','img/gorilla.png','img/gorilla.json');
         //HUEVO BIRD BOMBER
@@ -100,7 +101,7 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.enable(this.stairs);
         
         //MEGAMAN
-        this.intialPosition_x = 2250; this.intialPosition_y = 50;
+        this.intialPosition_x = 100; this.intialPosition_y = 80;
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=false;
