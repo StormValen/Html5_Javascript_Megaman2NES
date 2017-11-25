@@ -10,8 +10,10 @@ MegamanGame.prefab_HotDog = function(game,x,y, _level,_direction){
     this.animations.add('spawn_floor',Phaser.Animation.generateFrameNames('spawn',2,2), 10, true);
     
     this.direction = _direction;
-    this.jumpRate = 2000;
-    this.nextJump = 0;
+    this.shootRate = 2000;
+    this.nextShoot = 3000;
+    this.idleRate = 2000;
+    this.nextIdle = 0;
     this.spawned_air = false;
     this.spawned_floor = false;
     this.isMiniJumping =0;
@@ -52,10 +54,19 @@ MegamanGame.prefab_HotDog.prototype.update = function(){
         this.spawned_floor = true;
     }
     
-    if(this.body.blocked.down && this.spawned_floor == true){
-        this.anim = this.animations.play('idle');
-        console.log(this.animations.currentAnim.frame);
+    if(this.spawned_floor == true){
+       
         
+        if(this.game.time.now > this.nextShoot){ 
+            this.animations.play('atack'); console.log("attack");
+            this.nextShoot = this.game.time.now + this.shootRate;
+        }
+        else if(this.game.time.now > this.nextIdle) {
+             this.animations.play('idle');
+             console.log("idle");
+             this.nextIdle = this.game.time.now + this.idleRate;
+        }
+       
         this.body.setSize(60,60);
         this.body.velocity.x = 0;
     }

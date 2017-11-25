@@ -100,7 +100,7 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.enable(this.stairs);
         
         //MEGAMAN
-        this.intialPosition_x = 2250; this.intialPosition_y = 50;
+        this.intialPosition_x = 100; this.intialPosition_y = 80;
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=false;
