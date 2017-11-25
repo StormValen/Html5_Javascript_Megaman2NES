@@ -3,6 +3,7 @@ var MegamanGame = MegamanGame || {};
 MegamanGame.prefab_BirdBomber = function(game, x, y,_level,_speed,_direction,_jumpPower){
     this.level = _level;
     this.eggDroped = false;
+    this.CarringEgg = true;
     Phaser.Sprite.call(this,game,x,y,'birdbomber_sprites');
     this.anchor.setTo(0.5);
     this.animations.add('bomba',Phaser.Animation.generateFrameNames('bomba', 1, 2), 10, true);
@@ -22,7 +23,7 @@ MegamanGame.prefab_BirdBomber.prototype.constructor = MegamanGame.prefab_BirdBom
 
 MegamanGame.prefab_BirdBomber.prototype.create = function(){
     
-}
+};
 
 MegamanGame.prefab_BirdBomber.prototype.update = function(){
     
@@ -35,4 +36,16 @@ MegamanGame.prefab_BirdBomber.prototype.update = function(){
     }else if(this.eggDroped == false){
         this.animations.play('bomba');
     }
-}
+};
+
+MegamanGame.prefab_BirdBomber.prototype.getEggDropped = function(){
+    return this.eggDroped;
+};
+
+MegamanGame.prefab_BirdBomber.prototype.getCarringEgg = function(){
+    return this.CarringEgg;
+};
+
+MegamanGame.prefab_BirdBomber.prototype.setCarringEgg = function(){
+    this.CarringEgg = false;
+};

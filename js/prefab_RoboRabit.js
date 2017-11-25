@@ -64,3 +64,7 @@ MegamanGame.prefab_RoboRabit.prototype.jump = function(){
     this.body.velocity.y = -this.high_jump;
     //console.log("jump");
 };
+
+MegamanGame.prefab_RoboRabit.prototype.shoot = function(){
+      
+};

@@ -53,6 +53,8 @@ MegamanGame.scene_Game= {
         this.game.load.atlas('hotdog_sprites','img/hotdog.png','img/hotdog.json');
         //HOT GORILLA
         this.game.load.atlas('gorilla_sprites','img/gorilla.png','img/gorilla.json');
+        //HUEVO BIRD BOMBER
+        this.game.load.atlas('huevo','img/Huevo.png','img/Huevo.json');
     },
     
     
@@ -99,7 +101,7 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.enable(this.stairs);
         
         //MEGAMAN
-        this.megaman = new MegamanGame.prefab_Megaman(this.game,2250,50,this);
+        this.megaman = new MegamanGame.prefab_Megaman(this.game,30,50,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=false;
         
@@ -158,6 +160,17 @@ MegamanGame.scene_Game= {
     
                                 ////////// UPDATE FUNCTION //////////
     update:function(){
+        
+        //BIRD BOMBER DROPPS EGG
+        if(this.birdbomber.getEggDropped() == true && this.birdbomber.getCarringEgg() == true){
+            this.egg = new MegamanGame.prefab_huevoBirdBomber(this.game,this.birdbomber.body.x+10,this.birdbomber.body.y+20,this);
+            this.game.add.existing(this.egg);
+            this.birdbomber.setCarringEgg();
+        }
+        
+        
+        
+        
         if(this.megaman.position.y >= (gameOptions.gameHeight-20)){
             this.megaman.animations.play("jump");
            // this.megaman.body.gravity = 0;
