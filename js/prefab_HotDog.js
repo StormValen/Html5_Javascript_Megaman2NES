@@ -21,15 +21,14 @@ MegamanGame.prefab_HotDog = function(game,x,y, _level,_direction){
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
     
+   
+    this.bullets = this.game.add.group();
+    this.bullets.enableBody = true;
     
 };
 
 MegamanGame.prefab_HotDog.prototype = Object.create(Phaser.Sprite.prototype);
 MegamanGame.prefab_HotDog.prototype.constructor = MegamanGame.prefab_HotDog;
-
-MegamanGame.prefab_HotDog.prototype.create = function(){
-
-};
 
 MegamanGame.prefab_HotDog.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.terrain);    
@@ -58,16 +57,30 @@ MegamanGame.prefab_HotDog.prototype.update = function(){
        
         
         if(this.game.time.now > this.nextShoot){ 
-            this.animations.play('atack'); console.log("attack");
+            this.animations.play('atack');
             this.nextShoot = this.game.time.now + this.shootRate;
+            this.createBullet();
         }
         else if(this.game.time.now > this.nextIdle) {
              this.animations.play('idle');
-             console.log("idle");
              this.nextIdle = this.game.time.now + this.idleRate;
         }
        
         this.body.setSize(60,60);
         this.body.velocity.x = 0;
     }
+};
+
+
+MegamanGame.prefab_HotDog.prototype.createBullet = function(){
+    var bullet = this.bullets.getFirstExists(false);
+        
+    if(!bullet)
+    {
+        bullet = new MegamanGame.prefab_HotDog_Bullet(this.game,this.body.position.x, this.body.position.y+50,this.level);
+        this.bullets.add(bullet);
+    }
+    else { bullet.reset(this.body.position.x, this.body.position.y+50); }
+    bullet.body.velocity.x = -130;
+    bullet.body.velocity.y = 110;
 };

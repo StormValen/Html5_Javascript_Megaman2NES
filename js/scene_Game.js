@@ -50,6 +50,7 @@ MegamanGame.scene_Game= {
         this.game.load.atlas('ballbat_sprites','img/ballBat.png','img/ballBat.json');
         //HOT DOG
         this.game.load.atlas('hotdog_sprites','img/hotdog.png','img/hotdog.json');
+        this.game.load.image('dogShoot', 'img/dogShoot.png');
         //HOT GORILLA
         this.game.load.atlas('gorilla_sprites','img/gorilla.png','img/gorilla.json');
         //HUEVO BIRD BOMBER
