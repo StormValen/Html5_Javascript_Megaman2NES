@@ -101,7 +101,7 @@ MegamanGame.scene_Game= {
         this.game.physics.arcade.enable(this.stairs);
         
         //MEGAMAN
-        this.megaman = new MegamanGame.prefab_Megaman(this.game,30,50,this);
+        this.megaman = new MegamanGame.prefab_Megaman(this.game,2250,50,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=false;
         
