@@ -11,9 +11,9 @@ MegamanGame.prefab_HotDog = function(game,x,y, _level,_direction){
     
     this.direction = _direction;
     this.shootRate = 2000;
-    this.nextShoot = 3000;
+    this.nextShoot = this.game.time.now + 3000;
     this.idleRate = 2000;
-    this.nextIdle = 0;
+    this.nextIdle = this.game.time.now;
     this.spawned_air = false;
     this.spawned_floor = false;
     this.isMiniJumping =0;
