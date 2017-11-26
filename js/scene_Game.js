@@ -57,7 +57,9 @@ MegamanGame.scene_Game= {
         //HOT GORILLA
         this.game.load.atlas('gorilla_sprites','img/gorilla.png','img/gorilla.json');
         //HUEVO BIRD BOMBER
-        this.game.load.atlas('huevo','img/Huevo.png','img/Huevo.json');
+        this.game.load.atlas('huevo','img/animHuevo.png','img/animHuevo.json');
+        //ZANAHORIA ROBORABIT
+        this.game.load.atlas('zanahoria','img/zanahora.png','img/zanahoria.json');
     },
     
     
@@ -129,7 +131,7 @@ MegamanGame.scene_Game= {
         this.hotdog = new MegamanGame.prefab_HotDog(this.game,170,70,this,-1);
         this.game.add.existing(this.hotdog);
         
-         //GORILLA PRUEBA
+        //GORILLA PRUEBA
         this.gorilla = new MegamanGame.prefab_Gorilla(this.game,2500,250,this,50,-1,300);
         this.game.add.existing(this.gorilla);
         

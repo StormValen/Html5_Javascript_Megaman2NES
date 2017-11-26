@@ -41,6 +41,7 @@ MegamanGame.prefab_RoboRabit.prototype.update = function(){
         
         this.nextJump = this.game.time.now + this.jumpRate;
         this.jump();
+        this.shoot();
       
         this.body.setSize(30,37);
     }
@@ -62,5 +63,6 @@ MegamanGame.prefab_RoboRabit.prototype.jump = function(){
 };
 
 MegamanGame.prefab_RoboRabit.prototype.shoot = function(){
-      
+      this.newShoot = new MegamanGame.prefab_zanahoria(this.game,this.body.x,this.body.y,this.level);
+    this.game.add.existing(this.newShoot);
 };
