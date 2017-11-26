@@ -11,9 +11,9 @@ MegamanGame.prefab_HotDog = function(game,x,y, _level,_direction){
     
     this.direction = _direction;
     this.shootRate = 2000;
-    this.nextShoot = this.game.time.now + 3000;
+    this.nextShoot = 0
     this.idleRate = 2000;
-    this.nextIdle = this.game.time.now;
+    this.nextIdle = 0
     this.spawned_air = false;
     this.spawned_floor = false;
     this.isMiniJumping =0;
@@ -21,7 +21,11 @@ MegamanGame.prefab_HotDog = function(game,x,y, _level,_direction){
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
     
-   
+    this.first = true;
+    this.second = false;
+    this.actual_time1 = this.game.time.now;
+    this.actual_time2 = this.game.time.now;
+    
     this.bullets = this.game.add.group();
     this.bullets.enableBody = true;
     
@@ -55,15 +59,30 @@ MegamanGame.prefab_HotDog.prototype.update = function(){
     
     if(this.spawned_floor == true){
        
-        
-        if(this.game.time.now > this.nextShoot){ 
-            this.animations.play('atack');
-            this.nextShoot = this.game.time.now + this.shootRate;
-            this.createBullet();
+        if(this.first == true){
+            
+            if(this.nextIdle < 2000) {
+                this.animations.play('idle');
+            }
+            else{
+                this.first = false;
+                this.second = true;
+            }
+            this.nextIdle = this.game.time.now - this.actual_time1;
+            this.actual_time2 = this.game.time.now;
         }
-        else if(this.game.time.now > this.nextIdle) {
-             this.animations.play('idle');
-             this.nextIdle = this.game.time.now + this.idleRate;
+        else if(this.second == true){
+             
+            if(this.nextShoot < 2000){ 
+                this.animations.play('atack');
+                if(this.nextShoot%250<10){ this.createBullet(); }
+            }
+            else{
+                this.first = true;
+                this.second = false;
+            }
+            this.nextShoot = this.game.time.now - this.actual_time2;
+            this.actual_time1 = this.game.time.now;
         }
        
         this.body.setSize(60,60);

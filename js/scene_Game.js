@@ -126,7 +126,7 @@ MegamanGame.scene_Game= {
         this.game.add.existing(this.ballbat);
         
          //HOT DOG PRUEBA
-        this.hotdog = new MegamanGame.prefab_HotDog(this.game,150,70,this,-1);
+        this.hotdog = new MegamanGame.prefab_HotDog(this.game,170,70,this,-1);
         this.game.add.existing(this.hotdog);
         
          //GORILLA PRUEBA
