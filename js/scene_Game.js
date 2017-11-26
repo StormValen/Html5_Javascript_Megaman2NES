@@ -34,6 +34,9 @@ MegamanGame.scene_Game= {
         this.load.image('stairs_8','tilemaps/StairsLayer/stair_8.png');
         
         
+        //HUD LOAD
+        this.game.load.atlas('hud_lives', 'img/vidas.png', 'img/vidas.json');     
+        
         //MEGAMAN LOAD
         this.game.load.atlas('megaman_sprites', 'img/sprites.png', 'img/sprites.json');
         this.megaman_bullet_speed = 300;
@@ -65,9 +68,9 @@ MegamanGame.scene_Game= {
         //MUSICA
         this.music = this.add.audio('music');
         this.music.loop = true;
-        //this.music.play();
+        this.music.play();
         this.shootS = this.add.audio('shootS');
-        this.jumpS = this.add.audio('jumpS')
+        this.jumpS = this.add.audio('jumpS');
         
         //ALL MAP
         this.map = this.game.add.tilemap('WoodmanLevel');
@@ -130,6 +133,10 @@ MegamanGame.scene_Game= {
         this.gorilla = new MegamanGame.prefab_Gorilla(this.game,2500,250,this,50,-1,300);
         this.game.add.existing(this.gorilla);
         
+        //HUD
+        this.hud_lives = this.game.add.sprite(20,20, "hud_lives");
+        this.hud_lives.fixedToCamera = true;
+        this.hud_lives.animations.add('idle',Phaser.Animation.generateFrameNames('iddle', 1, 29), 10, true);
         
         //KEYBOARD
         this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -156,13 +163,18 @@ MegamanGame.scene_Game= {
                                 ////////// UPDATE FUNCTION //////////
     update:function(){
         
+        //HUD
+        this.hud_lives.animations.play("idle");
+        if(this.megaman.live%5==0){ this.result = this.megaman.live/5; }
+        this.hud_lives.animations.frame = 28 - this.result;
+
+        
         //BIRD BOMBER DROPPS EGG
         if(this.birdbomber.getEggDropped() == true && this.birdbomber.getCarringEgg() == true){
             this.egg = new MegamanGame.prefab_huevoBirdBomber(this.game,this.birdbomber.body.x+10,this.birdbomber.body.y+20,this);
             this.game.add.existing(this.egg);
             this.birdbomber.setCarringEgg();
         }
-        
         
         
         

@@ -16,7 +16,7 @@ MegamanGame.prefab_Megaman = function(game,x,y, _level){
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
     this.body.collideWorldBounds = true;
-    this.live = 100;
+    this.live = 140;
     this.speed = 100;
     this.jump_hit = 100;
     
