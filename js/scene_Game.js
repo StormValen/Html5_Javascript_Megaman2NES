@@ -109,7 +109,7 @@ MegamanGame.scene_Game= {
         this.intialPosition_x = 100; this.intialPosition_y = 80;
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
-        this.megaman.body.collideWorldBounds=false;
+        this.megaman.body.collideWorldBounds=true;
         
         //ROBORABIT PRUEBA
         this.roborabit = new MegamanGame.prefab_RoboRabit(this.game,300,80,this,50,-1,300);
@@ -176,16 +176,6 @@ MegamanGame.scene_Game= {
             this.egg = new MegamanGame.prefab_huevoBirdBomber(this.game,this.birdbomber.body.x+10,this.birdbomber.body.y+20,this);
             this.game.add.existing(this.egg);
             this.birdbomber.setCarringEgg();
-        }
-        
-        
-        
-        if(this.megaman.position.y >= (gameOptions.gameHeight-20)){
-            this.megaman.animations.play("jump");
-           // this.megaman.body.gravity = 0;
-            //console.log("hola");
-            //mover la camara distancia gameOption.gameHeight.
-
         }
         
         //COLISIONS
