@@ -36,7 +36,6 @@ MegamanGame.prefab_HotDog.prototype.constructor = MegamanGame.prefab_HotDog;
 
 MegamanGame.prefab_HotDog.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.terrain);    
-    this.game.debug.body(this);
     
      if(this.body.blocked.down){
             this.lastValueOfGround = this.body.position.y;

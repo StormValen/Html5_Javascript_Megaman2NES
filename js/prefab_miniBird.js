@@ -5,7 +5,6 @@ MegamanGame.prefab_miniBird = function(game,x,y, _level){
     this.animations.add('pajaro',Phaser.Animation.generateFrameNames('pajaro', 1, 2), 10, true);
     this.animations.play('pajaro');
     this.level = _level;
-    //this.scale.setTo(0.4);
     this.anchor.setTo(0.5);
     this.checkWorldBounds = true;
     this.outOfBoundsKill = true;
