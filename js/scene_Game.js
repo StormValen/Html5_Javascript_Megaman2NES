@@ -33,6 +33,9 @@ MegamanGame.scene_Game= {
         this.load.image('stairs_7','tilemaps/StairsLayer/stair_7.png');
         this.load.image('stairs_8','tilemaps/StairsLayer/stair_8.png');
         
+        //LEAVES BUG
+        this.load.image("MoreLeaves","img/MoreLeaves.png");
+        
         
         //HUD LOAD
         this.game.load.atlas('hud_lives', 'img/vidas.png', 'img/vidas.json');     
@@ -96,6 +99,8 @@ MegamanGame.scene_Game= {
         this.stairs.add(this.stairs7);
         this.stairs.add(this.stairs8);
         this.game.physics.arcade.enable(this.stairs);
+        
+        this.MoreLeaves = this.game.add.image(0,0,"MoreLeaves");
         
         //MEGAMAN
         this.intialPosition_x = 100; this.intialPosition_y = 80;
