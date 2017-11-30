@@ -242,6 +242,8 @@ MegamanGame.scene_Game= {
         this.camera.follow(this.megaman,Phaser.Camera.FOLLOW_PLATFORMER);
         
         this.lastValueOfGround = 0; //Necesary for megaman movement
+        
+        this.load_megaman_bullets();
     },
     
                                 ////////// UPDATE FUNCTION //////////
