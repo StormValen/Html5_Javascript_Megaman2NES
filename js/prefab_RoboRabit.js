@@ -17,6 +17,7 @@ MegamanGame.prefab_RoboRabit = function(game,x,y, _level,_speed,_direction,_high
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
     this.body.setSize(30,38);
+    this.damage = 1;
 };
 
 MegamanGame.prefab_RoboRabit.prototype = Object.create(Phaser.Sprite.prototype);
@@ -48,7 +49,7 @@ MegamanGame.prefab_RoboRabit.prototype.update = function(){
    
     this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
         if(enemy.body.touching && enemy.body.touching){
-            player.hit(enemy.scale.x);
+             player.hit(enemy.scale.x,enemy.damage);
         }
     });
 };

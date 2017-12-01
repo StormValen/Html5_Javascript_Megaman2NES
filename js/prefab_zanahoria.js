@@ -10,7 +10,8 @@ MegamanGame.prefab_zanahoria = function(game,x,y, _level){
     game.physics.arcade.enable(this);
     this.body.gravity.y = 0;
     this.shootDirectionX = (this.level.megaman.body.x - this.body.x)*2;
-    this.shootDirectionY = (this.level.megaman.body.y - this.body.y)*2;
+    this.shootDirectionY = ((this.level.megaman.body.y+5) - this.body.y)*2;
+    this.damage = 10;
     
 };
 
@@ -20,4 +21,11 @@ MegamanGame.prefab_zanahoria.prototype.constructor = MegamanGame.prefab_zanahori
 MegamanGame.prefab_zanahoria.prototype.update = function(){
     this.body.velocity.x = this.shootDirectionX;
     this.body.velocity.y = this.shootDirectionY;
+    
+    this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
+        if(enemy.body.touching && enemy.body.touching){
+            player.hit(enemy.scale.x,enemy.damage);
+            enemy.kill();
+        }
+    });
 }

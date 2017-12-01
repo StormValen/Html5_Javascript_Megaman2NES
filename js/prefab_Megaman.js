@@ -30,12 +30,13 @@ MegamanGame.prefab_Megaman.prototype.update = function(){
     if(this.body.position.x > 2000 && this.body.position.x < 2800 && this.body.position.y > 500 ){ this.kill(); this.level.state.start('game'); }
 };
 
-MegamanGame.prefab_Megaman.prototype.hit = function(scaleEnemy){
+MegamanGame.prefab_Megaman.prototype.hit = function(scaleEnemy, damage){
    
     if(scaleEnemy == 1){ this.body.velocity.x = -this.speed; }
     else if(scaleEnemy == -1){ this.body.velocity.x = this.speed; }
     this.body.velocity.y = -this.jump_hit;
     this.animations.play('jump');
-    this.live--;
+    this.live = this.live - damage;
+    console.log(damage);
     if(this.live < 0 ){ this.kill(); this.level.state.start('game'); }
 };

@@ -24,6 +24,7 @@ MegamanGame.prefab_Gorilla= function(game,x,y, _level,_speed,_direction,_high_ju
     
     game.physics.arcade.enable(this);
     this.body.setSize(30,30, 0,10);
+    this.damage = 1;
 
 };
 
@@ -99,7 +100,7 @@ MegamanGame.prefab_Gorilla.prototype.update = function(){
     
     this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
         if(enemy.body.touching && enemy.body.touching){
-            player.hit(enemy.scale.x);
+            player.hit(enemy.scale.x,enemy.damage);
         }
     });
     
