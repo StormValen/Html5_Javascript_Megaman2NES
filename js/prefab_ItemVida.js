@@ -8,7 +8,7 @@ MegamanGame.prefab_ItemVida = function(game,x,y, _level){
     this.outOfBoundsKill = true;
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
-    this.vida = 50;
+    this.vida = 40;
   
     
 };
