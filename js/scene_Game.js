@@ -55,6 +55,11 @@ MegamanGame.scene_Game= {
         this.game.load.image('dogShoot', 'img/dogShoot.png');                                       //Hotdog - Shoot     
         this.game.load.atlas('huevo','img/animHuevo.png','img/animHuevo.json');                     //Birdbomber - Shoot
         this.game.load.atlas('zanahoria','img/zanahora.png','img/zanahoria.json');                  //Roborabit - Shoot
+        
+        //item vida
+         this.load.image('item_vida','img/itemVida.png');
+        
+        
     },
     
     
