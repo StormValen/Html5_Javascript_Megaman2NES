@@ -17,7 +17,9 @@ MegamanGame.prefab_RoboRabit = function(game,x,y, _level,_speed,_direction,_high
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
     this.body.setSize(30,38);
+    
     this.damage = 1;
+    this.live = 100;
 };
 
 MegamanGame.prefab_RoboRabit.prototype = Object.create(Phaser.Sprite.prototype);
@@ -66,4 +68,11 @@ MegamanGame.prefab_RoboRabit.prototype.jump = function(){
 MegamanGame.prefab_RoboRabit.prototype.shoot = function(){
       this.newShoot = new MegamanGame.prefab_zanahoria(this.game,this.body.x,this.body.y,this.level);
     this.game.add.existing(this.newShoot);
+};
+
+MegamanGame.prefab_RoboRabit.prototype.hit = function(damage){
+   
+    this.live = this.live - damage;
+    console.log(this.live);
+    if(this.live < 0 ){ this.kill();}
 };
