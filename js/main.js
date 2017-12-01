@@ -12,7 +12,8 @@ var gameOptions = {
     megamanJump:300,
     
     megamanFireRate:400,
-    megamanNextFire:0
+    megamanNextFire:0,
+    dead:0
 };
 
 MegamanGame.game = new Phaser.Game(gameOptions.gameWidth,gameOptions.gameHeight,Phaser.AUTO,null,this,false,false);

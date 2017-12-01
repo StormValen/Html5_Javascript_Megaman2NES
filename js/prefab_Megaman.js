@@ -38,7 +38,16 @@ MegamanGame.prefab_Megaman.prototype.hit = function(scaleEnemy, damage){
     this.animations.play('jump');
     this.live = this.live - damage;
     //console.log(damage);
-    if(this.live < 0 ){ this.kill(); this.level.state.start('game'); }
+    if(this.live < 0 ){ 
+        gameOptions.dead++;
+        this.kill(); 
+        if(gameOptions.dead == 3){ this.level.state.start('gameOver'); }
+        
+        else{
+            this.level.state.start('game'); 
+        }
+    }
+    
 };
 
 MegamanGame.prefab_Megaman.prototype.more_live = function(vida){
