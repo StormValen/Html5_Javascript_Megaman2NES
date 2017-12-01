@@ -258,7 +258,6 @@ MegamanGame.scene_Game= {
         this.hud_lives.animations.play("idle");
         this.result = this.megaman.live/5;
         this.result = Math.trunc(this.result);
-        console.log(this.result);
         this.hud_lives.animations.frame = 28 - this.result;
 
         

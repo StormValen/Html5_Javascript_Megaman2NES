@@ -74,8 +74,11 @@ MegamanGame.prefab_RoboRabit.prototype.hit = function(damage){
    
     this.live = this.live - damage;
     if(this.live < 0 ){ 
-        this.vida = new MegamanGame.prefab_ItemVida(this.game,this.body.position.x,this.body.position.y,this.level);
-        this.game.add.existing(this.vida);
+        this.random = this.game.rnd.integerInRange(1, 2);
+        if(this.random == 1){
+            this.vida = new MegamanGame.prefab_ItemVida(this.game,this.body.position.x,this.body.position.y,this.level);
+            this.game.add.existing(this.vida);
+        }
         this.kill(); 
         
     }
