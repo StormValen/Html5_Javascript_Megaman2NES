@@ -45,7 +45,7 @@ MegamanGame.prefab_RoboRabit.prototype.update = function(){
         this.nextJump = this.game.time.now + this.jumpRate;
         this.jump();
         this.shoot();
-      
+        console.log("update");
         this.body.setSize(30,37);
     }
    
@@ -79,7 +79,7 @@ MegamanGame.prefab_RoboRabit.prototype.hit = function(damage){
             this.vida = new MegamanGame.prefab_ItemVida(this.game,this.body.position.x,this.body.position.y,this.level);
             this.game.add.existing(this.vida);
         }
-        this.kill(); 
+        this.destroy(); 
         
     }
 };

@@ -25,7 +25,7 @@ MegamanGame.prefab_zanahoria.prototype.update = function(){
     this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
         if(enemy.body.touching && enemy.body.touching){
             player.hit(enemy.scale.x,enemy.damage);
-            enemy.kill();
+            enemy.destroy();
         }
     });
 }
