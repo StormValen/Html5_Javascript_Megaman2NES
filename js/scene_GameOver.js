@@ -1,7 +1,11 @@
 var MegamanGame = MegamanGame || {};
 
 MegamanGame.scene_GameOver= {
-    
+        init:function(){
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVertically = true;
+        },
     preload:function(){
        this.game.load.image("background","img/gameOver.png");
        this.game.load.audio('music', 'sounds/GameOver.mp3');
