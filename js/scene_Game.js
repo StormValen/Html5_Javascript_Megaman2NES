@@ -110,7 +110,7 @@ MegamanGame.scene_Game= {
         this.MoreLeaves = this.game.add.image(0,0,"MoreLeaves");
         
         //MEGAMAN
-        this.intialPosition_x = 3120; this.intialPosition_y = 1088;
+        this.intialPosition_x = 100; this.intialPosition_y =80;
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=true;
@@ -168,7 +168,7 @@ MegamanGame.scene_Game= {
         this.ballbat0 = new MegamanGame.prefab_BallBat(this.game,256,64,this,110,-1,20);
         this.game.add.existing(this.ballbat0);
         
-        this.ballbat1 = new MegamanGame.prefab_BallBat(this.game,320,96,this,110,-1,20);
+        /*this.ballbat1 = new MegamanGame.prefab_BallBat(this.game,320,96,this,110,-1,20);
         this.game.add.existing(this.ballbat1);
         
         this.ballbat2 = new MegamanGame.prefab_BallBat(this.game,384,80 ,this,110,-1,20);
@@ -208,7 +208,7 @@ MegamanGame.scene_Game= {
         this.game.add.existing(this.ballbat13);
         
         this.ballbat14 = new MegamanGame.prefab_BallBat(this.game,1856,304,this,110,-1,20);
-        this.game.add.existing(this.ballbat14);
+        this.game.add.existing(this.ballbat14);*/
         
         
          //HOT DOG PRUEBA

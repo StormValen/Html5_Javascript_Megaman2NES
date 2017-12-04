@@ -33,11 +33,21 @@ MegamanGame.prefab_BallBat.prototype.create = function(){
 }
 
 MegamanGame.prefab_BallBat.prototype.update = function(){
-    if(this.body.x - this.level.megaman.body.x < 100){ //Mejorar esto <---
+    this.radioActivacion = 125;
+    
+    this.vectorMM_EE_X = this.level.megaman.position.x - this.position.x;
+    this.vectorMM_EE_Y = this.level.megaman.position.y - this.position.y;
+    this.vectorMM_EE_module = Math.sqrt(Math.pow(this.vectorMM_EE_X,2) + Math.pow(this.vectorMM_EE_Y,2));
+    
+    if(this.vectorMM_EE_module < this.radioActivacion){ //Mejorar esto <---
         this.megamanIsDetected = true;
+    }else{
+        this.megamanIsDetected = false;
     }
     if(this.megamanIsDetected == false){
         this.animations.play('iddle');
+        this.body.velocity.x = 0;
+        this.body.velocity.y = 0;
     }else if(this.megamanIsDetected == true){
         if(this.isOpen == false){
             this.anim = this.animations.play('open',false);

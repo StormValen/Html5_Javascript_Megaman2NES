@@ -44,8 +44,14 @@ MegamanGame.prefab_RoboRabit.prototype.update = function(){
         
         this.nextJump = this.game.time.now + this.jumpRate;
         this.jump();
-        this.shoot();
-        console.log("update");
+        this.radioActivacion = 200;
+    
+        this.vectorMM_EE_X = this.level.megaman.position.x - this.position.x;
+        this.vectorMM_EE_Y = this.level.megaman.position.y - this.position.y;
+        this.vectorMM_EE_module = Math.sqrt(Math.pow(this.vectorMM_EE_X,2) + Math.pow(this.vectorMM_EE_Y,2));
+        if(this.vectorMM_EE_module < this.radioActivacion){
+            this.shoot();
+        }
         this.body.setSize(30,37);
     }
    

@@ -26,14 +26,23 @@ MegamanGame.prefab_Rooster.prototype.create = function(){
 
 MegamanGame.prefab_Rooster.prototype.update = function(){
     
-    this.game.physics.arcade.collide(this,this.level.terrain);
-    this.body.velocity.x = this.speed*this.direction;
+    this.radioActivacion = 200;
+    
+    this.vectorMM_EE_X = this.level.megaman.position.x - this.position.x;
+    this.vectorMM_EE_Y = this.level.megaman.position.y - this.position.y;
+    this.vectorMM_EE_module = Math.sqrt(Math.pow(this.vectorMM_EE_X,2) + Math.pow(this.vectorMM_EE_Y,2));
+        this.game.physics.arcade.collide(this,this.level.terrain);
+    if(this.vectorMM_EE_module < this.radioActivacion){
+      this.body.velocity.x = this.speed*this.direction;
     
     if(this.body.x < this.level.megaman.body.x +25 && this.jumped == false){
         this.jump();
         this.jumped = true;
     }
-    this.animations.play('run');
+    this.animations.play('run');  
+    }
+
+    
 }
 
 MegamanGame.prefab_Rooster.prototype.jump = function(){

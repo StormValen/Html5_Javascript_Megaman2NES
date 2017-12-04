@@ -27,8 +27,15 @@ MegamanGame.prefab_BirdBomber.prototype.create = function(){
 
 MegamanGame.prefab_BirdBomber.prototype.update = function(){
     
+    this.radioActivacion = 300;
+    
+    this.vectorMM_EE_X = this.level.megaman.position.x - this.position.x;
+    this.vectorMM_EE_Y = this.level.megaman.position.y - this.position.y;
+    this.vectorMM_EE_module = Math.sqrt(Math.pow(this.vectorMM_EE_X,2) + Math.pow(this.vectorMM_EE_Y,2));
+    
     this.game.physics.arcade.collide(this,this.level.terrain);
-    this.body.velocity.x = this.speed*this.direction;
+    if(this.vectorMM_EE_module < this.radioActivacion){
+        this.body.velocity.x = this.speed*this.direction;
     
     if(this.body.x < this.level.megaman.body.x){
         this.animations.play('vuelo');
@@ -36,6 +43,8 @@ MegamanGame.prefab_BirdBomber.prototype.update = function(){
     }else if(this.eggDroped == false){
         this.animations.play('bomba');
     }
+    }
+    
 };
 
 MegamanGame.prefab_BirdBomber.prototype.getEggDropped = function(){

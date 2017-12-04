@@ -36,8 +36,13 @@ MegamanGame.prefab_HotDog.prototype.constructor = MegamanGame.prefab_HotDog;
 
 MegamanGame.prefab_HotDog.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.terrain);    
+    this.radioActivacion = 125;
     
-     if(this.body.blocked.down){
+    this.vectorMM_EE_X = this.position.x -this.level.megaman.position.x;
+    this.vectorMM_EE_Y = this.position.y -this.level.megaman.position.y;
+    this.vectorMM_EE_module = Math.sqrt(Math.pow(this.vectorMM_EE_X,2) + Math.pow(this.vectorMM_EE_Y,2));
+    
+    if(this.body.blocked.down){
             this.lastValueOfGround = this.body.position.y;
          this.body.gravity.y = 0;
         }
@@ -58,7 +63,8 @@ MegamanGame.prefab_HotDog.prototype.update = function(){
     
     if(this.spawned_floor == true){
        
-        if(this.first == true){
+           
+        if(this.first == true ){
             
             if(this.nextIdle < 2000) {
                 this.animations.play('idle');
@@ -71,10 +77,13 @@ MegamanGame.prefab_HotDog.prototype.update = function(){
             this.actual_time2 = this.game.time.now;
         }
         else if(this.second == true){
+            
              
             if(this.nextShoot < 2000){ 
-                this.animations.play('atack');
+                if(this.vectorMM_EE_module < this.radioActivacion){
+                    this.animations.play('atack');
                 if(this.nextShoot%250<10){ this.createBullet(); }
+                }
             }
             else{
                 this.first = true;
