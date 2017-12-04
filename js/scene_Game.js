@@ -36,6 +36,8 @@ MegamanGame.scene_Game= {
         //LEAVES BUG
         this.load.image("MoreLeaves","img/MoreLeaves.png");
         
+        //DOORS LAYER
+        this.load.image('DoorsLayer','img/DoorsLayer.png');
         
         //HUD LOAD
         this.game.load.atlas('hud_lives', 'img/vidas.png', 'img/vidas.json');     
@@ -57,7 +59,7 @@ MegamanGame.scene_Game= {
         this.game.load.atlas('zanahoria','img/zanahora.png','img/zanahoria.json');                  //Roborabit - Shoot
         
         //item vida
-         this.load.image('item_vida','img/itemVida.png');
+        this.load.image('item_vida','img/itemVida.png');
         
         
     },
@@ -81,7 +83,7 @@ MegamanGame.scene_Game= {
         
         this.terrain = this.map.createLayer('Terrain');
         this.extraBackground = this.game.add.image(0,0,'ExtraBackground');
-        this.blockedDoor = this.map.createLayer('BlockedDoor');
+        this.blockedDoor = this.game.add.image(0,0,"DoorsLayer");
         this.map.createLayer('Background'); 
         
         this.map.setCollisionBetween(1,100,true,'Terrain',true);  
@@ -108,7 +110,7 @@ MegamanGame.scene_Game= {
         this.MoreLeaves = this.game.add.image(0,0,"MoreLeaves");
         
         //MEGAMAN
-        this.intialPosition_x = 100; this.intialPosition_y = 80;
+        this.intialPosition_x = 3120; this.intialPosition_y = 1088;
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=true;
