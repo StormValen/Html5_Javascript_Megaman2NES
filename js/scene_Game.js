@@ -114,9 +114,10 @@ MegamanGame.scene_Game= {
         this.MoreLeaves = this.game.add.image(0,0,"MoreLeaves");
         
         //MEGAMAN
-        this.intialPosition_x = 2000; this.intialPosition_y =80;
+        this.intialPosition_x = 100; this.intialPosition_y =80;
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
+        this.megaman.scale.x = -1;
         this.megaman.body.collideWorldBounds=true;
         
         //ROBORABIT PRUEBA
@@ -269,7 +270,7 @@ MegamanGame.scene_Game= {
         
         //DOORS
         if(this.blockedDoor.body.x - this.megaman.body.x <= 25){
-            this.blockedDoor.body.velocity.y = -5;
+            this.blockedDoor.body.velocity.y = -1;
         }
         
         //BIRD BOMBER DROPPS EGG
