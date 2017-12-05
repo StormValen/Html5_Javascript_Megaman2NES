@@ -81,10 +81,14 @@ MegamanGame.scene_Game= {
         this.map.addTilesetImage('MegamanTileset');
         this.map.addTilesetImage('basic');
         
+        this.map.createLayer('Background'); 
+        
+        this.blockedDoor = this.game.add.sprite(0,0,"DoorsLayer");
+        this.game.add.existing(this.blockedDoor);
+        this.game.physics.arcade.enable(this.blockedDoor);
+        
         this.terrain = this.map.createLayer('Terrain');
         this.extraBackground = this.game.add.image(0,0,'ExtraBackground');
-        this.blockedDoor = this.game.add.image(0,0,"DoorsLayer");
-        this.map.createLayer('Background'); 
         
         this.map.setCollisionBetween(1,100,true,'Terrain',true);  
         
@@ -262,7 +266,11 @@ MegamanGame.scene_Game= {
         this.result = this.megaman.live/5;
         this.result = Math.trunc(this.result);
         this.hud_lives.animations.frame = 28 - this.result;
-
+        
+        //DOORS
+        if(this.blockedDoor.body.x - this.megaman.body.x <= 50){
+            this.blockedDoor.body.velocity.y = -5;
+        }
         
         //BIRD BOMBER DROPPS EGG
         if(this.birdbomber0.getEggDropped() == true && this.birdbomber0.getCarringEgg() == true){
@@ -307,7 +315,7 @@ MegamanGame.scene_Game= {
         
         //////////GOD MODE
         if(this.g.isDown){
-            this.megaman.body.enable = false;
+            this.megaman.live = 140;
         }
         ///////////////////
         
