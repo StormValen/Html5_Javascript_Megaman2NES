@@ -114,7 +114,7 @@ MegamanGame.scene_Game= {
         this.MoreLeaves = this.game.add.image(0,0,"MoreLeaves");
         
         //MEGAMAN
-        this.intialPosition_x = 100; this.intialPosition_y =80;
+        this.intialPosition_x = 2000; this.intialPosition_y =80;
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.body.collideWorldBounds=true;

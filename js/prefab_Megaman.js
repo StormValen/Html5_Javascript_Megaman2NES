@@ -27,7 +27,16 @@ MegamanGame.prefab_Megaman.prototype.constructor = MegamanGame.prefab_Megaman;
 
 MegamanGame.prefab_Megaman.prototype.update = function(){
     
-    if(this.body.position.x > 2000 && this.body.position.x < 2800 && this.body.position.y > 500 ){ this.kill(); this.level.state.start('game'); }
+    if(this.body.position.x > 2000 && this.body.position.x < 2800 && this.body.position.y > 500 ){ 
+        this.kill();
+        gameOptions.dead++;    
+        if(gameOptions.dead == 3){ this.level.state.start('gameOver'); }
+        
+        else{
+            this.level.state.start('game'); 
+        }
+        
+    }
 };
 
 MegamanGame.prefab_Megaman.prototype.hit = function(scaleEnemy, damage){
