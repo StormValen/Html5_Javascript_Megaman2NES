@@ -25,6 +25,7 @@ MegamanGame.prefab_Gorilla= function(game,x,y, _level,_speed,_direction,_high_ju
     game.physics.arcade.enable(this);
     this.body.setSize(30,30, 0,10);
     this.damage = 1;
+    this.live = 50;
 
 };
 
@@ -113,4 +114,18 @@ MegamanGame.prefab_Gorilla.prototype.jump = function(){
     else if(this.scale.x == -1){ this.body.setSize(30,30,10,7); this.body.velocity.x = -this.speed * this.direction; }
     
     this.body.velocity.y = -this.high_jump;
+};
+
+MegamanGame.prefab_Gorilla.prototype.hit = function(damage){
+   
+    this.live = this.live - damage;
+    if(this.live < 0 ){ 
+        this.random = this.game.rnd.integerInRange(1, 2);
+        if(this.random == 1){
+            this.vida = new MegamanGame.prefab_ItemVida(this.game,this.body.position.x,this.body.position.y,this.level);
+            this.game.add.existing(this.vida);
+        }
+        this.destroy(); 
+        
+    }
 };

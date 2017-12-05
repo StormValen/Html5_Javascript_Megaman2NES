@@ -16,10 +16,13 @@ MegamanGame.prefab_Megaman_Bullet.prototype.constructor = MegamanGame.prefab_Meg
 
 MegamanGame.prefab_Megaman_Bullet.prototype.update = function(){
     
-    this.game.physics.arcade.overlap(this,this.level.roborabit0,function(enemy,player){
-        if(enemy.body.touching && enemy.body.touching){
+    this.game.physics.arcade.overlap(this,this.level.roborabit0,this.hit);
+    
+};
+
+MegamanGame.prefab_Megaman_Bullet.prototype.hit = function(enemy, player){
+    if(enemy.body.touching && enemy.body.touching){
             player.hit(enemy.damage);
             enemy.destroy();
         }
-    });
 }

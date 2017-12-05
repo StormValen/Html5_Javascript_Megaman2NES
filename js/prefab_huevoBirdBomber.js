@@ -11,6 +11,9 @@ MegamanGame.prefab_huevoBirdBomber = function(game,x,y, _level){
     game.physics.arcade.enable(this);
     this.body.gravity.y =  400;
     this.miniBirdsSpawned = false;
+    
+    this.damage = 1;
+    this.live = 10;
 };
 
 MegamanGame.prefab_huevoBirdBomber.prototype = Object.create(Phaser.Sprite.prototype);
@@ -25,6 +28,12 @@ MegamanGame.prefab_huevoBirdBomber.prototype.update = function(){
             this.miniBirdsSpawned = true;
         }
     }
+    
+    this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
+        if(enemy.body.touching && enemy.body.touching){
+             player.hit(enemy.scale.x,enemy.damage);
+        }
+    });
 }
 
 MegamanGame.prefab_huevoBirdBomber.prototype.miniBirdsSpawn = function(){
@@ -38,3 +47,17 @@ MegamanGame.prefab_huevoBirdBomber.prototype.miniBirdsSpawn = function(){
     this.game.add.existing(this.mini3);
     this.game.add.existing(this.mini4);
 }
+
+MegamanGame.prefab_huevoBirdBomber.prototype.hit = function(damage){
+   
+    this.live = this.live - damage;
+    if(this.live < 0 ){ 
+        this.random = this.game.rnd.integerInRange(1, 2);
+        if(this.random == 1){
+            this.vida = new MegamanGame.prefab_ItemVida(this.game,this.body.position.x,this.body.position.y,this.level);
+            this.game.add.existing(this.vida);
+        }
+        this.destroy(); 
+        
+    }
+};

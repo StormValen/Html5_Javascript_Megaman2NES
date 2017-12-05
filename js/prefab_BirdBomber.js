@@ -14,6 +14,9 @@ MegamanGame.prefab_BirdBomber = function(game, x, y,_level,_speed,_direction,_ju
     
     game.physics.arcade.enable(this);
     this.body.gravity.y =0;
+    
+    this.damage = 1;
+    this.live = 100;
 };
 
 MegamanGame.prefab_BirdBomber.prototype = Object.create(Phaser.Sprite.prototype);
@@ -45,6 +48,12 @@ MegamanGame.prefab_BirdBomber.prototype.update = function(){
     }
     }
     
+     this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
+        if(enemy.body.touching && enemy.body.touching){
+             player.hit(enemy.scale.x,enemy.damage);
+        }
+    });
+    
 };
 
 MegamanGame.prefab_BirdBomber.prototype.getEggDropped = function(){
@@ -57,4 +66,18 @@ MegamanGame.prefab_BirdBomber.prototype.getCarringEgg = function(){
 
 MegamanGame.prefab_BirdBomber.prototype.setCarringEgg = function(){
     this.CarringEgg = false;
+};
+
+MegamanGame.prefab_BirdBomber.prototype.hit = function(damage){
+   
+    this.live = this.live - damage;
+    if(this.live < 0 ){ 
+        this.random = this.game.rnd.integerInRange(1, 2);
+        if(this.random == 1){
+            this.vida = new MegamanGame.prefab_ItemVida(this.game,this.body.position.x,this.body.position.y,this.level);
+            this.game.add.existing(this.vida);
+        }
+        this.destroy(); 
+        
+    }
 };

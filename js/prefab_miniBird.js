@@ -10,6 +10,8 @@ MegamanGame.prefab_miniBird = function(game,x,y, _level){
     this.outOfBoundsKill = true;
     game.physics.arcade.enable(this);
     this.body.gravity.y = 0;
+    
+    this.damage = 1;
 };
 
 MegamanGame.prefab_miniBird.prototype = Object.create(Phaser.Sprite.prototype);
@@ -18,4 +20,11 @@ MegamanGame.prefab_miniBird.prototype.constructor = MegamanGame.prefab_miniBird;
 MegamanGame.prefab_miniBird.prototype.update = function(){
     this.animations.play('pajaro');
     this.body.velocity.x = -60;
+    
+     this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
+        if(enemy.body.touching && enemy.body.touching){
+            player.hit(enemy.scale.x,enemy.damage);
+            enemy.destroy();
+        }
+    });
 }

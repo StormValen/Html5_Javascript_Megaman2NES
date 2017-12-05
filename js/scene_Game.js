@@ -243,6 +243,7 @@ MegamanGame.scene_Game= {
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.z = this.game.input.keyboard.addKey(Phaser.Keyboard.Z);
         this.x = this.game.input.keyboard.addKey(Phaser.Keyboard.X);
+        this.g = this.game.input.keyboard.addKey(Phaser.Keyboard.G);
         
         
         //CAMERA
@@ -303,6 +304,12 @@ MegamanGame.scene_Game= {
         }
         
         this.isMiniJumping = this.lastValueOfGround -this.megaman.body.position.y; 
+        
+        //////////GOD MODE
+        if(this.g.isDown){
+            this.megaman.body.enable = false;
+        }
+        ///////////////////
         
         //ACCIONES POR TECLAS MEGAMAN
         if(this.cursors.left.isDown)
