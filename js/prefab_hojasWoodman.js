@@ -22,7 +22,6 @@ MegamanGame.prefab_hojasWoodman.prototype.update = function(){
 
     this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
         if(enemy.body.touching && enemy.body.touching){
-            console.log("ha");
             player.hit(enemy.scale.x,enemy.damage);
             enemy.destroy();
         }

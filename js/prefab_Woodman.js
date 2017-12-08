@@ -114,10 +114,10 @@ MegamanGame.prefab_Woodman.prototype.jump = function(){
 
 MegamanGame.prefab_Woodman.prototype.attack = function(){
     this.currentanimation = this.animations.play('atack');
-    this.hoja0 = new MegamanGame.prefab_hojasWoodman(this.game,242*16,64*16,this,50,-1,300);
-    this.hoja1 = new MegamanGame.prefab_hojasWoodman(this.game,245*16,64*16,this,50,-1,300);
-    this.hoja2 = new MegamanGame.prefab_hojasWoodman(this.game,248*16,64*16,this,50,-1,300);
-    this.hoja3 = new MegamanGame.prefab_hojasWoodman(this.game,251*16,64*16,this,50,-1,300);
+    this.hoja0 = new MegamanGame.prefab_hojasWoodman(this.game,242*16,64*16,this.level);
+    this.hoja1 = new MegamanGame.prefab_hojasWoodman(this.game,245*16,64*16,this.level);
+    this.hoja2 = new MegamanGame.prefab_hojasWoodman(this.game,248*16,64*16,this.level);
+    this.hoja3 = new MegamanGame.prefab_hojasWoodman(this.game,251*16,64*16,this.level);
     this.game.add.existing(this.hoja0);  
     this.game.add.existing(this.hoja1);
     this.game.add.existing(this.hoja2);
@@ -127,7 +127,7 @@ MegamanGame.prefab_Woodman.prototype.attack = function(){
 MegamanGame.prefab_Woodman.prototype.shield = function(){
     this.ritual = true;
     this.animations.play('ritual');
-    this.shieldOBJ = new MegamanGame.prefab_ShieldWoodman(this.game,this.body.x,this.body.y,this,50,-1,300, true);
+    this.shieldOBJ = new MegamanGame.prefab_ShieldWoodman(this.game,this.body.x,this.body.y,this.level,50,-1,300, true);
     this.game.add.existing(this.shieldOBJ);    
 };
 
