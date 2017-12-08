@@ -64,6 +64,8 @@ MegamanGame.prefab_Megaman_Bullet.prototype.update = function(){
     this.game.physics.arcade.overlap(this,this.level.egg2,this.hit);
     this.game.physics.arcade.overlap(this,this.level.egg3,this.hit);
     
+    this.game.physics.arcade.overlap(this,this.level.woodman,this.hit);
+    
 };
 
 MegamanGame.prefab_Megaman_Bullet.prototype.hit = function(enemy, player){

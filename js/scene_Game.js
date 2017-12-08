@@ -56,8 +56,8 @@ MegamanGame.scene_Game= {
         this.game.load.atlas('gorilla_sprites','img/gorilla.png','img/gorilla.json');               //Gorilla
         this.game.load.image('dogShoot', 'img/dogShoot.png');                                       //Hotdog - Shoot     
         this.game.load.atlas('huevo','img/animHuevo.png','img/animHuevo.json');                     //Birdbomber - Shoot
-        this.game.load.atlas('zanahoria','img/zanahora.png','img/zanahoria.json');                  //Roborabit - Shoot
-        
+        this.game.load.atlas('zanahoria','img/zanahora.png','img/zanahoria.json');                 //Roborabit - Shoot
+        this.game.load.atlas('woodman_sprites','img/Woodman.png','img/Woodman.json');
         //item vida
         this.load.image('item_vida','img/itemVida.png');
         
@@ -114,7 +114,7 @@ MegamanGame.scene_Game= {
         this.MoreLeaves = this.game.add.image(0,0,"MoreLeaves");
         
         //MEGAMAN
-        this.intialPosition_x = 100; this.intialPosition_y =80;
+        this.intialPosition_x = 100; this.intialPosition_y = 80; // 100 - 80
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.scale.x = -1;
@@ -238,6 +238,10 @@ MegamanGame.scene_Game= {
         
         this.gorilla3 = new MegamanGame.prefab_Gorilla(this.game,2672,300,this,50,-1,300);
         this.game.add.existing(this.gorilla3);
+        
+        //WOODMAN PRUEBA   
+        this.woodman = new MegamanGame.prefab_Woodman(this.game,300,80,this,50,-1,300);
+        this.game.add.existing(this.woodman);
         
         //HUD
         this.hud_lives = this.game.add.sprite(20,20, "hud_lives");
