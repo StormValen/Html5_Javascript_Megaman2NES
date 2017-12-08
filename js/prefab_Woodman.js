@@ -13,7 +13,7 @@ MegamanGame.prefab_Woodman = function(game, x, y,_level,_speed,_direction,_jumpP
     this.speed = _speed;
     this.direction = _direction;
     this.damage = 1;
-    this.live = 100;
+    this.live = 140;
     this.high_jump = _jumpPower/1.5;
     this.ritual = false;
     
@@ -28,6 +28,9 @@ MegamanGame.prefab_Woodman = function(game, x, y,_level,_speed,_direction,_jumpP
     
     game.physics.arcade.enable(this);
     this.body.gravity.y = gameOptions.megamanGravity;
+    
+    this.hud_lives_woodman;
+    this.first = false;
 };
 
 MegamanGame.prefab_Woodman.prototype = Object.create(Phaser.Sprite.prototype);
@@ -40,6 +43,25 @@ MegamanGame.prefab_Woodman.prototype.create = function(){
 
 MegamanGame.prefab_Woodman.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.terrain);
+    
+    //HUD
+    if(this.body.position.x - this.level.megaman.body.position.x < 130 && this.first == false){
+    
+        this.hud_lives_woodman = this.game.add.sprite(35,20, "hud_lives_woodman");
+        this.hud_lives_woodman.fixedToCamera = true;
+        this.hud_lives_woodman.animations.add('idle',Phaser.Animation.generateFrameNames('iddle', 1, 29), 10, true);
+        
+        this.first = true;
+    }
+    if(this.first == true){
+        this.hud_lives_woodman.animations.play("idle");
+        this.result = this.live/5;
+        this.result = Math.trunc(this.result);
+        this.hud_lives_woodman.animations.frame = 28 - this.result;
+    }
+        
+    ///////
+    
     
     if(this.body.blocked.down){
         this.body.velocity.x = 0;
@@ -110,12 +132,7 @@ MegamanGame.prefab_Woodman.prototype.shield = function(){
 MegamanGame.prefab_Woodman.prototype.hit = function(damage){
 
     this.live = this.live - damage;
-    if(this.live < 0 ){ 
-        this.random = this.game.rnd.integerInRange(1, 2);
-        if(this.random == 1){
-            this.vida = new MegamanGame.prefab_ItemVida(this.game,this.body.position.x,this.body.position.y,this.level);
-            this.game.add.existing(this.vida);
-        }
+    if(this.live <= 0 ){ 
         this.destroy();
         MegamanGame.game.state.start('menu');
     }

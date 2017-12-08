@@ -17,9 +17,12 @@ MegamanGame.prefab_hojasWoodman.prototype = Object.create(Phaser.Sprite.prototyp
 MegamanGame.prefab_hojasWoodman.prototype.constructor = MegamanGame.prefab_hojasWoodman;
 
 MegamanGame.prefab_hojasWoodman.prototype.update = function(){
-    this.animations.play("iddle");
+    
+    this.animations.play("iddle"); 
+
     this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
         if(enemy.body.touching && enemy.body.touching){
+            console.log("ha");
             player.hit(enemy.scale.x,enemy.damage);
             enemy.destroy();
         }

@@ -41,6 +41,7 @@ MegamanGame.scene_Game= {
         
         //HUD LOAD
         this.game.load.atlas('hud_lives', 'img/vidas.png', 'img/vidas.json');     
+        this.game.load.atlas('hud_lives_woodman', 'img/HUDWoodman.png', 'img/HUDWoodman.json')
         
         //WOODMAN LEAF
         this.game.load.atlas('hojas_woodman','img/animHojas.png','img/animHojas.json');
@@ -249,7 +250,7 @@ MegamanGame.scene_Game= {
         
     
         
-        //HUD
+        //HUD MEGAMAN
         this.hud_lives = this.game.add.sprite(20,20, "hud_lives");
         this.hud_lives.fixedToCamera = true;
         this.hud_lives.animations.add('idle',Phaser.Animation.generateFrameNames('iddle', 1, 29), 10, true);
