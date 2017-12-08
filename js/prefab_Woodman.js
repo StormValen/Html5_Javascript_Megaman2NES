@@ -31,6 +31,8 @@ MegamanGame.prefab_Woodman = function(game, x, y,_level,_speed,_direction,_jumpP
     
     this.hud_lives_woodman;
     this.first = false;
+    
+    this.shieldOBJ;
 };
 
 MegamanGame.prefab_Woodman.prototype = Object.create(Phaser.Sprite.prototype);
@@ -125,13 +127,16 @@ MegamanGame.prefab_Woodman.prototype.attack = function(){
 MegamanGame.prefab_Woodman.prototype.shield = function(){
     this.ritual = true;
     this.animations.play('ritual');
-    this.shieldOBJ = new MegamanGame.prefab_ShieldWoodman(this.game,this.body.x,this.body.y,this,50,-1,300);
+    this.shieldOBJ = new MegamanGame.prefab_ShieldWoodman(this.game,this.body.x,this.body.y,this,50,-1,300, true);
     this.game.add.existing(this.shieldOBJ);    
 };
 
 MegamanGame.prefab_Woodman.prototype.hit = function(damage){
-
-    this.live = this.live - damage;
+    
+    if(this.shieldOBJ.isOn == false){
+          this.live = this.live - damage;
+    }
+  
     if(this.live <= 0 ){ 
         this.destroy();
         MegamanGame.game.state.start('menu');

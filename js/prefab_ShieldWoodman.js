@@ -1,6 +1,6 @@
 var MegamanGame = MegamanGame || {};
 
-MegamanGame.prefab_ShieldWoodman = function(game, x, y,_level,_speed,_direction,_jumpPower){
+MegamanGame.prefab_ShieldWoodman = function(game, x, y,_level,_speed,_direction,_jumpPower,isOn){
     this.level = _level;
         
     Phaser.Sprite.call(this,game,x,y,'shield');
@@ -12,15 +12,13 @@ MegamanGame.prefab_ShieldWoodman = function(game, x, y,_level,_speed,_direction,
     this.body.gravity.y = 0;
     
     this.timeAlive = 0;
+    this.isOn = isOn; 
 };
 
 MegamanGame.prefab_ShieldWoodman.prototype = Object.create(Phaser.Sprite.prototype);
 MegamanGame.prefab_ShieldWoodman.prototype.constructor = MegamanGame.prefab_ShieldWoodman;
 
 //FUNCTIONS 
-MegamanGame.prefab_ShieldWoodman.prototype.create = function(){
-    
-};
 
 MegamanGame.prefab_ShieldWoodman.prototype.setPositionWM = function(X,Y){
     this.position.x = X;
@@ -30,6 +28,7 @@ MegamanGame.prefab_ShieldWoodman.prototype.setPositionWM = function(X,Y){
 MegamanGame.prefab_ShieldWoodman.prototype.update = function(){
     if(this.timeAlive > 300){
         this.destroy();    
+        this.isOn = false;
     }
     this.timeAlive = this.timeAlive +1;
 };

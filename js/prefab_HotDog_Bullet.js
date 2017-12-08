@@ -17,7 +17,6 @@ MegamanGame.prefab_HotDog_Bullet.prototype.constructor = MegamanGame.prefab_HotD
 
 MegamanGame.prefab_HotDog_Bullet.prototype.update = function(){
     
-     this.game.debug.body(this);
     this.game.physics.arcade.overlap(this,this.level.megaman,function(enemy,player){
         if(enemy.body.touching && enemy.body.touching){
             player.hit(enemy.scale.x,enemy.damage);
