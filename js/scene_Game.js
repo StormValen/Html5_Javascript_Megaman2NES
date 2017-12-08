@@ -42,6 +42,12 @@ MegamanGame.scene_Game= {
         //HUD LOAD
         this.game.load.atlas('hud_lives', 'img/vidas.png', 'img/vidas.json');     
         
+        //WOODMAN LEAF
+        this.game.load.atlas('hojas_woodman','img/animHojas.png','img/animHojas.json');
+        
+        //WOODMAN SHIELD
+        this.game.load.spritesheet('shield','img/RitualAnim.png',65,65);
+        
         //MEGAMAN LOAD
         this.game.load.atlas('megaman_sprites', 'img/sprites.png', 'img/sprites.json');             //Megaman
         this.game.load.image('megaman_bullet', 'img/megaman_bullet.png');                           //Megaman - Shoot
@@ -60,8 +66,6 @@ MegamanGame.scene_Game= {
         this.game.load.atlas('woodman_sprites','img/Woodman.png','img/Woodman.json');
         //item vida
         this.load.image('item_vida','img/itemVida.png');
-        
-        
     },
     
     
@@ -114,7 +118,7 @@ MegamanGame.scene_Game= {
         this.MoreLeaves = this.game.add.image(0,0,"MoreLeaves");
         
         //MEGAMAN
-        this.intialPosition_x = 100; this.intialPosition_y = 80; // 100 - 80
+        this.intialPosition_x = 3808; this.intialPosition_y = 1040; // 100 - 80
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.scale.x = -1;
@@ -168,7 +172,7 @@ MegamanGame.scene_Game= {
         this.rooster0 = new MegamanGame.prefab_Rooster(this.game,3568,1056,this,110,-1,275);
         this.game.add.existing(this.rooster0); 
         
-        //BALLBAL PRUEBA
+        //BALLBAT PRUEBA
         
         this.ballbat0 = new MegamanGame.prefab_BallBat(this.game,256,64,this,110,-1,20);
         this.game.add.existing(this.ballbat0);
@@ -240,8 +244,10 @@ MegamanGame.scene_Game= {
         this.game.add.existing(this.gorilla3);
         
         //WOODMAN PRUEBA   
-        this.woodman = new MegamanGame.prefab_Woodman(this.game,300,80,this,50,-1,300);
+        this.woodman = new MegamanGame.prefab_Woodman(this.game,4048,1104,this,50,-1,300);
         this.game.add.existing(this.woodman);
+        
+    
         
         //HUD
         this.hud_lives = this.game.add.sprite(20,20, "hud_lives");
@@ -265,7 +271,6 @@ MegamanGame.scene_Game= {
     
                                 ////////// UPDATE FUNCTION //////////
     update:function(){
-        
         //HUD
         this.hud_lives.animations.play("idle");
         this.result = this.megaman.live/5;
@@ -445,7 +450,6 @@ MegamanGame.scene_Game= {
     
     // CALLBACK COLLISIONS WITH STAIRS
     megamanWithStairs:function(obj1, obj2){
-       // console.log("stairs");
         if(this.cursors.up.isDown)
         {
             this.megaman.body.allowGravity = false;
