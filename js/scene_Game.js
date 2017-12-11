@@ -119,7 +119,7 @@ MegamanGame.scene_Game= {
         this.MoreLeaves = this.game.add.image(0,0,"MoreLeaves");
         
         //MEGAMAN
-        this.intialPosition_x = 3808; this.intialPosition_y = 1040; // 100 - 80
+        this.intialPosition_x = 100; this.intialPosition_y = 80; // 100 - 80  3808 1040
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.scale.x = -1;
