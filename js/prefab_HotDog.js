@@ -29,7 +29,7 @@ MegamanGame.prefab_HotDog = function(game,x,y, _level,_direction){
     this.bullets = this.game.add.group();
     this.bullets.enableBody = true;
     
-    this.damage = 1;
+    this.damage = 10;
     this.live = 39;
     
 };

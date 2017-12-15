@@ -15,7 +15,7 @@ MegamanGame.prefab_BirdBomber = function(game, x, y,_level,_speed,_direction,_ju
     game.physics.arcade.enable(this);
     this.body.gravity.y =0;
     
-    this.damage = 1;
+    this.damage = 3;
     this.live = 49;
 };
 

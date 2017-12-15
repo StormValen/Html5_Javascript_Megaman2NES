@@ -20,6 +20,10 @@ MegamanGame.prefab_Megaman = function(game,x,y, _level){
     this.speed = 100;
     this.jump_hit = 100;
     
+    this.alreadyCollided = false;
+    this.collideRate = 1000;
+    this.nextCollide = 0;
+    
 };
 
 MegamanGame.prefab_Megaman.prototype = Object.create(Phaser.Sprite.prototype);
@@ -37,16 +41,23 @@ MegamanGame.prefab_Megaman.prototype.update = function(){
         }
         
     }
+    
+    if(this.alreadyCollided == true && this.game.time.now > this.nextCollide){
+        this.alreadyCollided = false;
+        this.nextCollide = this.game.time.now + this.collideRate;
+    }
+    
 };
 
 MegamanGame.prefab_Megaman.prototype.hit = function(scaleEnemy, damage){
    
+    if(this.alreadyCollided == false){
+         
     if(scaleEnemy == 1){ this.body.velocity.x = -this.speed; }
     else if(scaleEnemy == -1){ this.body.velocity.x = this.speed; }
     this.body.velocity.y = -this.jump_hit;
     this.animations.play('jump');
     this.live = this.live - damage;
-    //console.log(damage);
     if(this.live < 0 ){ 
         gameOptions.dead++;
         this.kill(); 
@@ -56,7 +67,8 @@ MegamanGame.prefab_Megaman.prototype.hit = function(scaleEnemy, damage){
             this.level.state.start('game'); 
         }
     }
-    
+        this.alreadyCollided = true;
+    }
 };
 
 MegamanGame.prefab_Megaman.prototype.more_live = function(vida){

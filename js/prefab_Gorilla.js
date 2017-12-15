@@ -24,7 +24,7 @@ MegamanGame.prefab_Gorilla= function(game,x,y, _level,_speed,_direction,_high_ju
     
     game.physics.arcade.enable(this);
     this.body.setSize(30,30, 0,10);
-    this.damage = 1;
+    this.damage = 3;
     this.live = 19;
 
 };

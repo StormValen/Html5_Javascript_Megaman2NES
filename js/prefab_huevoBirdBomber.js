@@ -12,7 +12,7 @@ MegamanGame.prefab_huevoBirdBomber = function(game,x,y, _level){
     this.body.gravity.y =  400;
     this.miniBirdsSpawned = false;
     
-    this.damage = 1;
+    this.damage = 5;
     this.live = 10;
 };
 

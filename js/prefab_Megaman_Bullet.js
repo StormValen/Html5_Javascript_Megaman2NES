@@ -9,6 +9,7 @@ MegamanGame.prefab_Megaman_Bullet = function(game,x,y, _level){
     game.physics.arcade.enable(this);
     this.body.allowGravity = false;
     this.damage = 10;
+
 };
 
 MegamanGame.prefab_Megaman_Bullet.prototype = Object.create(Phaser.Sprite.prototype);
