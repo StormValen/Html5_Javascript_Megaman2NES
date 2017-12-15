@@ -9,7 +9,7 @@ MegamanGame.prefab_hojasWoodman = function(game,x,y, _level){
     this.outOfBoundsKill = true;
     game.physics.arcade.enable(this);
     this.body.gravity.y = 20;
-    this.damage = 10;
+    this.damage = 20;
     
 };
 

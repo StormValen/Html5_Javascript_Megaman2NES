@@ -16,7 +16,7 @@ MegamanGame.prefab_BirdBomber = function(game, x, y,_level,_speed,_direction,_ju
     this.body.gravity.y =0;
     
     this.damage = 1;
-    this.live = 100;
+    this.live = 49;
 };
 
 MegamanGame.prefab_BirdBomber.prototype = Object.create(Phaser.Sprite.prototype);

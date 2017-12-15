@@ -279,8 +279,8 @@ MegamanGame.scene_Game= {
         this.hud_lives.animations.frame = 28 - this.result;
         
         //DOORS
-        if(this.blockedDoor.body.x - this.megaman.body.x <= 25){
-            this.blockedDoor.body.velocity.y = -1;
+        if(this.megaman.body.x > 3500){
+            this.blockedDoor.body.velocity.y = -3;
         }
         
         //BIRD BOMBER DROPPS EGG

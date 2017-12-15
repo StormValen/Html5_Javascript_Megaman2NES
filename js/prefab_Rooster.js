@@ -15,7 +15,7 @@ MegamanGame.prefab_Rooster = function(game, x, y,_level,_speed,_direction,_jumpP
     this.body.gravity.y =gameOptions.megamanGravity;
     
     this.damage = 1;
-    this.live = 70;
+    this.live = 19;
 };
 
 MegamanGame.prefab_Rooster.prototype = Object.create(Phaser.Sprite.prototype);

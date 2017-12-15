@@ -19,7 +19,7 @@ MegamanGame.prefab_RoboRabit = function(game,x,y, _level,_speed,_direction,_high
     this.body.setSize(30,38);
     
     this.damage = 1;
-    this.live = 100;
+    this.live = 29;
 };
 
 MegamanGame.prefab_RoboRabit.prototype = Object.create(Phaser.Sprite.prototype);

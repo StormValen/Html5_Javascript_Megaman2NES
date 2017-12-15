@@ -23,7 +23,7 @@ MegamanGame.prefab_BallBat = function(game, x, y,_level,_speed){
     this.SteeringForceY = 0;
     
     this.damage = 1;
-    this.live = 10;
+    this.live = 9;
 };
 
 MegamanGame.prefab_BallBat.prototype = Object.create(Phaser.Sprite.prototype);
