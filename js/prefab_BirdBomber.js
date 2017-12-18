@@ -36,7 +36,7 @@ MegamanGame.prefab_BirdBomber.prototype.update = function(){
     this.vectorMM_EE_Y = this.level.megaman.position.y - this.position.y;
     this.vectorMM_EE_module = Math.sqrt(Math.pow(this.vectorMM_EE_X,2) + Math.pow(this.vectorMM_EE_Y,2));
     
-    this.game.physics.arcade.collide(this,this.level.terrain);
+    //this.game.physics.arcade.collide(this,this.level.terrain);
     if(this.vectorMM_EE_module < this.radioActivacion){
         this.body.velocity.x = this.speed*this.direction;
     

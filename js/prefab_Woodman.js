@@ -46,7 +46,8 @@ MegamanGame.prefab_Woodman.prototype.create = function(){
 MegamanGame.prefab_Woodman.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.terrain);
     
-    //HUD
+    if(this.level.megaman.body.position.x > 3808){
+        //HUD
     if(this.body.position.x - this.level.megaman.body.position.x < 130 && this.first == false){
     
         this.hud_lives_woodman = this.game.add.sprite(35,20, "hud_lives_woodman");
@@ -63,7 +64,6 @@ MegamanGame.prefab_Woodman.prototype.update = function(){
     }
         
     ///////
-    
     
     if(this.body.blocked.down){
         this.body.velocity.x = 0;
@@ -103,6 +103,8 @@ MegamanGame.prefab_Woodman.prototype.update = function(){
     if(this.ritual = true){
          this.shieldOBJ.setPositionWM(this.body.x+16,this.body.y+16);
     }
+    }
+    
 };
 
 MegamanGame.prefab_Woodman.prototype.jump = function(){
