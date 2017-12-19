@@ -272,6 +272,9 @@ MegamanGame.scene_Game= {
     
                                 ////////// UPDATE FUNCTION //////////
     update:function(){
+        
+        this.saveGame();
+        
         //HUD
         this.hud_lives.animations.play("idle");
         this.result = this.megaman.live/5;
@@ -477,5 +480,36 @@ MegamanGame.scene_Game= {
     
     bulletsWithTerrain:function(bullet, terrain){
             bullet.kill();
+    },
+    
+    // SAVE AND LOAD GAME
+    resumeGame:function(){
+        if(!this.supportLocalStorage() || (localStorage["saved"]!="true")){ 
+            this.resetGame();
+            return false;
+        }
+        gameOptions.dead =  parseInt(localStorage["dead"]);
+        this.intialPosition_x = parseInt(localStorage["positionX"]);
+        this.intialPosition_y =  parseInt(localStorage["positionY"]);
+    },
+    
+    saveGame:function(){
+        if(!this.supportLocalStorage()){
+            return false;
+        }
+        localStorage["saved"] = true;
+        localStorage["dead"] = gameOptions.dead;
+        localStorage["positionX"] = this.megaman.body.position.x;
+        localStorage["positionY"] = this.megaman.body.position.y;
+        return true;
+    },
+    
+    supportLocalStorage:function(){
+        return('localStorage' in window) && window['localStorage'] !== null;
+    },
+    
+    resetGame:function(){
+        this.intialPosition_x = 100; this.intialPosition_y = 80;
+        gameOptions.dead = 0;
     }
 };
