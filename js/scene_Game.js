@@ -119,7 +119,9 @@ MegamanGame.scene_Game= {
         this.MoreLeaves = this.game.add.image(0,0,"MoreLeaves");
         
         //MEGAMAN
-        this.intialPosition_x = 100; this.intialPosition_y = 80; // 100 - 80  3808 1040
+        
+        this.resumeGame();
+        //this.intialPosition_x = 100; this.intialPosition_y = 80; // 100 - 80  3808 1040
         this.megaman = new MegamanGame.prefab_Megaman(this.game,this.intialPosition_x,this.intialPosition_y,this);
         this.game.add.existing(this.megaman);
         this.megaman.scale.x = -1;
@@ -272,8 +274,6 @@ MegamanGame.scene_Game= {
     
                                 ////////// UPDATE FUNCTION //////////
     update:function(){
-        
-        this.saveGame();
         
         //HUD
         this.hud_lives.animations.play("idle");
@@ -491,6 +491,10 @@ MegamanGame.scene_Game= {
         gameOptions.dead =  parseInt(localStorage["dead"]);
         this.intialPosition_x = parseInt(localStorage["positionX"]);
         this.intialPosition_y =  parseInt(localStorage["positionY"]);
+        
+        if(gameOptions.dead == 3){ 
+            this.resetGame();
+        }
     },
     
     saveGame:function(){
@@ -499,8 +503,30 @@ MegamanGame.scene_Game= {
         }
         localStorage["saved"] = true;
         localStorage["dead"] = gameOptions.dead;
-        localStorage["positionX"] = this.megaman.body.position.x;
-        localStorage["positionY"] = this.megaman.body.position.y;
+        
+        //checkpoints
+        this.checkpointX;
+        this.checkpointY;
+        
+        if(this.megaman.body.position.x < 1150){
+            this.checkpointX = 100;
+            this.checkpointY = 80;
+        }
+        else if(this.megaman.body.position.x < 1990){
+            this.checkpointX = 1155;
+            this.checkpointY = 80;
+        }
+        else if(this.megaman.body.position.x < 3050){
+            this.checkpointX = 1995;
+            this.checkpointY = 88;
+        }
+        else if(this.megaman.body.position.x < 3500){ 
+            this.checkpointX = 3055;
+            this.checkpointY = 1112;
+        }
+        
+        localStorage["positionX"] = this.checkpointX;
+        localStorage["positionY"] = this.checkpointY;
         return true;
     },
     

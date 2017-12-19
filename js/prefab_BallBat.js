@@ -22,7 +22,7 @@ MegamanGame.prefab_BallBat = function(game, x, y,_level,_speed){
     this.SteeringForceX = 0;
     this.SteeringForceY = 0;
     
-    this.damage = 3;
+    this.damage = 5;
     this.live = 9;
 };
 

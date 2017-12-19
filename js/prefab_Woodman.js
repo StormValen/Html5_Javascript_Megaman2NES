@@ -12,7 +12,7 @@ MegamanGame.prefab_Woodman = function(game, x, y,_level,_speed,_direction,_jumpP
     
     this.speed = _speed;
     this.direction = _direction;
-    this.damage = 1;
+    this.damage = 10;
     this.live = 140;
     this.high_jump = _jumpPower/1.5;
     this.ritual = false;

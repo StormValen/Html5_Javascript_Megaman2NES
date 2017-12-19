@@ -47,6 +47,8 @@ MegamanGame.prefab_Megaman.prototype.update = function(){
         this.nextCollide = this.game.time.now + this.collideRate;
     }
     
+    this.level.saveGame();
+    
 };
 
 MegamanGame.prefab_Megaman.prototype.hit = function(scaleEnemy, damage){
@@ -58,7 +60,7 @@ MegamanGame.prefab_Megaman.prototype.hit = function(scaleEnemy, damage){
     this.body.velocity.y = -this.jump_hit;
     this.animations.play('jump');
     this.live = this.live - damage;
-    if(this.live < 0 ){ 
+    if(this.live <= 0 ){ 
         gameOptions.dead++;
         this.kill(); 
         if(gameOptions.dead == 3){ this.level.state.start('gameOver'); }

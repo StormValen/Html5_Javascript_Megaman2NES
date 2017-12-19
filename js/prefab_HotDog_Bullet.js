@@ -9,7 +9,7 @@ MegamanGame.prefab_HotDog_Bullet = function(game,x,y, _level){
     game.physics.arcade.enable(this);
     this.body.gravity.y = -220;
     
-    this.damage = 1;
+    this.damage = 5;
 };
 
 MegamanGame.prefab_HotDog_Bullet.prototype = Object.create(Phaser.Sprite.prototype);

@@ -14,7 +14,7 @@ MegamanGame.prefab_Rooster = function(game, x, y,_level,_speed,_direction,_jumpP
     game.physics.arcade.enable(this);
     this.body.gravity.y =gameOptions.megamanGravity;
     
-    this.damage = 3;
+    this.damage = 5;
     this.live = 19;
 };
 
