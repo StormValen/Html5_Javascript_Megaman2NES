@@ -498,6 +498,37 @@ MegamanGame.scene_Game= {
     },
     
     saveGame:function(){
+        this.radioActivacion = 125;
+        
+        this.A_checkPoint_X = 100;
+        this.A_checkPoint_Y = 80;
+        
+        this.B_checkPoint_X = 1155;
+        this.B_checkPoint_Y = 80;
+        
+        this.C_checkPoint_X = 1995;
+        this.C_checkPoint_Y = 88;
+        
+        this.D_checkPoint_X = 3055;
+        this.D_checkPoint_Y = 1112;
+        
+        this.vectorMM_CH_A_X = this.megaman.position.x - this.A_checkPoint_X;
+        this.vectorMM_CH_A_Y = this.megaman.position.y - this.A_checkPoint_Y;
+        this.vectorMM_CH_A_module = Math.sqrt(Math.pow(this.vectorMM_CH_A_X,2) + Math.pow(this.vectorMM_CH_A_Y,2));
+        
+        this.vectorMM_CH_B_X = this.megaman.position.x - this.B_checkPoint_X;
+        this.vectorMM_CH_B_Y = this.megaman.position.y - this.B_checkPoint_Y;
+        this.vectorMM_CH_B_module = Math.sqrt(Math.pow(this.vectorMM_CH_B_X,2) + Math.pow(this.vectorMM_CH_B_Y,2));
+        
+        this.vectorMM_CH_C_X = this.megaman.position.x - this.C_checkPoint_X;
+        this.vectorMM_CH_C_Y = this.megaman.position.y - this.C_checkPoint_Y;
+        this.vectorMM_CH_C_module = Math.sqrt(Math.pow(this.vectorMM_CH_C_X,2) + Math.pow(this.vectorMM_CH_C_Y,2));
+        
+        this.vectorMM_CH_D_X = this.megaman.position.x - this.D_checkPoint_X;
+        this.vectorMM_CH_D_Y = this.megaman.position.y - this.D_checkPoint_Y;
+        this.vectorMM_CH_D_module = Math.sqrt(Math.pow(this.vectorMM_CH_D_X,2) + Math.pow(this.vectorMM_CH_D_Y,2));
+        
+        
         if(!this.supportLocalStorage()){
             return false;
         }
@@ -508,19 +539,19 @@ MegamanGame.scene_Game= {
         this.checkpointX;
         this.checkpointY;
         
-        if(this.megaman.body.position.x < 1150){
+        if(this.vectorMM_CH_A_module < this.radioActivacion){
             this.checkpointX = 100;
             this.checkpointY = 80;
         }
-        else if(this.megaman.body.position.x < 1990){
+       else if(this.vectorMM_CH_B_module < this.radioActivacion){
             this.checkpointX = 1155;
             this.checkpointY = 80;
         }
-        else if(this.megaman.body.position.x < 3050){
+        else if(this.vectorMM_CH_C_module < this.radioActivacion){
             this.checkpointX = 1995;
             this.checkpointY = 88;
         }
-        else if(this.megaman.body.position.x < 3500){ 
+        else if(this.vectorMM_CH_D_module < this.radioActivacion){ 
             this.checkpointX = 3055;
             this.checkpointY = 1112;
         }
